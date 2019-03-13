@@ -1,0 +1,5 @@
+#!/bin/bash
+
+alias di="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-images"
+alias dps="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-ps"
+alias dcps="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-compose-ps"
