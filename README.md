@@ -4,7 +4,7 @@ This package allows you to run Docker commands and get a color output.
 
 ## Requirements
 
-> php >= 7.0
+- php >= 7.0
 
 ## Installation
 
