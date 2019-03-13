@@ -1,4 +1,4 @@
-# Color Docker Output
+# Docker color output
 
 This package allows you to run Docker commands and get a color output.
 
