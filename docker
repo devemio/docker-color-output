@@ -1,5 +1,6 @@
-#!/bin/bash
+#!/usr/bin/env bash
 
-alias di="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-images"
-alias dps="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-ps"
-alias dcps="$( cd "$(dirname "$0")" ; pwd -P )/bin/docker-compose-ps"
+# Bash aliases to run Docker commands.
+alias di="$(cd "$(dirname "$0")"; pwd -P)/bin/docker-images"
+alias dps="$(cd "$(dirname "$0")"; pwd -P)/bin/docker-ps"
+alias dcps="$(cd "$(dirname "$0")"; pwd -P)/bin/docker-compose-ps"
