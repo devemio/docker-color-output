@@ -2,6 +2,10 @@
 
 This package allows you to run Docker commands and get a color output.
 
+## Requirements
+
+> php >= 7.0
+
 ## Installation
 
 Clone the repo and add the following line to `.bashrc` or `.zshrc` file.
