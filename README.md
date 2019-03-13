@@ -7,7 +7,7 @@ This package allows you to run Docker commands and get a color output.
 Clone the repo and add the following line to `.bashrc` or `.zshrc` file.
 
 ```bash
-source /path/to/repo/docker
+source /path/to/repo/color-docker.aliases
 ```
 
 It creates convenient aliases to call commands.
