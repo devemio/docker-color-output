@@ -11,12 +11,13 @@ This package allows you to run Docker commands and get color output.
 Clone the repo and add the following lines to `.bashrc` or `.zshrc` file.
 
 ```bash
-alias di='/path-to-cloned-repo/bin/docker-images'
-alias dps='/path-to-cloned-repo/bin/docker-ps'
-alias dcps='/path-to-cloned-repo/bin/docker-compose-ps'
+DOCKER_COLOR_OUTPUT_PATH="/absolute-path-to-cloned-repo"
+alias di="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-images"
+alias dps="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-ps"
+alias dcps="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-compose-ps"
 ```
 
-**Note:** change `/path-to-cloned-repo` to your absolute path where you cloned the repository.
+**Note:** change `DOCKER_COLOR_OUTPUT_PATH` to your absolute path where you cloned the repository.
 
 ## Usage
 
