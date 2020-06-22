@@ -8,7 +8,7 @@ This package allows you to run Docker commands and get color output.
 
 ## Installation
 
-Clone the repo and add the following lines to `.bashrc` or `.zshrc` file.
+Clone the repo and add the following lines to `~/.bash_aliases` (`~/.bashrc`, `~/.zshrc`) file.
 
 ```bash
 DOCKER_COLOR_OUTPUT_PATH='/absolute-path-to-cloned-repo'
