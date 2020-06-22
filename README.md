@@ -1,6 +1,6 @@
 # Docker color output
 
-This package allows you to run Docker commands and get a color output.
+This package allows you to run Docker commands and get color output.
 
 ## Requirements
 
@@ -8,13 +8,15 @@ This package allows you to run Docker commands and get a color output.
 
 ## Installation
 
-Clone the repo and add the following line to `.bashrc` or `.zshrc` file.
+Clone the repo and add the following lines to `.bashrc` or `.zshrc` file.
 
 ```bash
-source /path/to/repo/aliases
+alias di='/path-to-cloned-repo/bin/docker-images'
+alias dps='/path-to-cloned-repo/bin/docker-ps'
+alias dcps='/path-to-cloned-repo/bin/docker-compose-ps'
 ```
 
-It creates convenient aliases to call commands.
+**Note:** change `/path-to-cloned-repo` to your absolute path where you cloned the repository.
 
 ## Usage
 
@@ -23,7 +25,7 @@ You can also pass all arguments as you pass to the command.
 ### Docker images
 
 ```bash
-# docker images
+# The 'docker images' command will be called.
 di
 ```
 
@@ -32,12 +34,12 @@ di
 ### Docker ps
 
 ```bash
-# docker ps
+# The 'docker ps' command will be called.
 dps
 ```
 
 ```bash
-# docker ps -a
+# The 'docker ps -a' command will be called.
 dps -a
 ```
 
@@ -46,7 +48,7 @@ dps -a
 ### Docker compose
 
 ```bash
-# docker-compose ps
+# The 'docker-compose ps' command will be called.
 dcps
 ```
 
