@@ -1,4 +1,4 @@
-# Docker color output
+# 🐳 Docker Color Output
 
 This package allows you to run Docker commands and get color output.
 
@@ -6,7 +6,7 @@ This package allows you to run Docker commands and get color output.
 
 - **php** >= 7.0
 
-## Installation
+## ⚡️ Installation
 
 Clone the repo and add the following lines to `~/.bash_aliases` (`~/.bashrc`, `~/.zshrc`) file.
 
@@ -19,11 +19,11 @@ alias dcps="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-compose-ps"
 
 **Note:** change `DOCKER_COLOR_OUTPUT_PATH` to your absolute path where you cloned the repository.
 
-## Usage
+## 💥 Usage
 
 You can also pass all arguments as you pass to the command.
 
-### Docker images
+### 💡 Docker images
 
 ```bash
 # The 'docker images' command will be called.
@@ -32,7 +32,7 @@ di
 
 ![docker images](https://user-images.githubusercontent.com/5787193/54311065-e5192080-45e4-11e9-8973-25ae5b12bea6.png)
 
-### Docker ps
+### 💡 Docker ps
 
 ```bash
 # The 'docker ps' command will be called.
@@ -46,7 +46,7 @@ dps -a
 
 ![docker ps](https://user-images.githubusercontent.com/5787193/54311067-e5192080-45e4-11e9-8fbb-6d30662656d4.png)
 
-### Docker compose
+### 💡 Docker compose
 
 ```bash
 # The 'docker-compose ps' command will be called.
