@@ -39,7 +39,7 @@ class DockerImages
     private $colors;
     private $output = [];
     private $rows = [];
-    private $lengths = [31];
+    private $lengths = [0];
     private $format;
 
     public function __construct(Colors $colors)
@@ -63,15 +63,15 @@ class DockerImages
 
             $length = strlen($row[0]);
 
-            if ($this->lengths[0] < $length) {
-                $this->lengths[0] = $length;
-            }
+            $this->lengths[0] = $length > $this->lengths[0] ? $length : $this->lengths[0];
         }
     }
 
     protected function prepareFormat()
     {
-        $length = $this->lengths[0] + 11;
+        $firstColumnLengthThreshold = 17;
+
+        $length = $this->lengths[0] >= $firstColumnLengthThreshold ? $this->lengths[0] + 13 : 30;
 
         $this->format = "%-{$length}.{$length}s %-30.30s %-30.30s %-30.30s %-30.30s" . PHP_EOL;
     }

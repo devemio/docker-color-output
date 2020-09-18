@@ -30,7 +30,7 @@ You can also pass all arguments as you pass to the command.
 di
 ```
 
-![docker images](https://user-images.githubusercontent.com/5787193/54311065-e5192080-45e4-11e9-8973-25ae5b12bea6.png)
+![docker images](https://user-images.githubusercontent.com/5787193/93581104-593a3e80-f9a9-11ea-9226-80e0e088d563.png)
 
 ### 💡 Docker ps
 
@@ -44,7 +44,7 @@ dps
 dps -a
 ```
 
-![docker ps](https://user-images.githubusercontent.com/5787193/54311067-e5192080-45e4-11e9-8fbb-6d30662656d4.png)
+![docker ps](https://user-images.githubusercontent.com/5787193/93581144-69521e00-f9a9-11ea-86bb-c23d7879c689.png)
 
 ### 💡 Docker compose
 
@@ -53,4 +53,4 @@ dps -a
 dcps
 ```
 
-![docker-compose ps](https://user-images.githubusercontent.com/5787193/54311063-e4808a00-45e4-11e9-8554-9704207a0db0.png)
+![docker-compose ps](https://user-images.githubusercontent.com/5787193/93581165-6fe09580-f9a9-11ea-914c-1081eab52a79.png)
