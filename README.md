@@ -30,7 +30,7 @@ You can also pass all arguments as you pass to the command.
 di
 ```
 
-![docker images](https://user-images.githubusercontent.com/5787193/93581104-593a3e80-f9a9-11ea-9226-80e0e088d563.png)
+![docker images](https://user-images.githubusercontent.com/5787193/93581956-7ae7f580-f9aa-11ea-8f81-d6922e1ca892.png)
 
 ### 💡 Docker ps
 
