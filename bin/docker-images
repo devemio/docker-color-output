@@ -92,17 +92,24 @@ class DockerImages
                 continue;
             }
 
+            // Repository
             $row[0] = $this->colors->fill($row[0], $this->contains($row[0], '/') ? 'dark-gray' : 'white');
+
+            // Tag
             $row[1] = $this->colors->fill($row[1], $row[1] == 'latest' ? 'light-green' : null);
+
+            // Image ID
             $row[2] = $this->colors->fill($row[2], 'dark-gray');
 
+            // Created
             $color = $this->contains($row[3], ['days', 'weeks']) ? 'green' : null;
             $color = $this->contains($row[3], 'months') ? 'brown' : $color;
             $color = $this->contains($row[3], 'years') ? 'red' : $color;
             $row[3] = $this->colors->fill($row[3], $color);
 
+            // Size
             $color = $this->contains($row[4], 'GB') ? 'red' : null;
-            $color = $this->contains($row[4], 'MB') && intval($row[4] >= 500) ? 'brown' : $color;
+            $color = $this->contains($row[4], 'MB') && intval($row[4]) >= 500 ? 'brown' : $color;
             $row[4] = $this->colors->fill($row[4], $color);
 
             echo sprintf($this->format, ...$row);
