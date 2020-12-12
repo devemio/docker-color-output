@@ -39,7 +39,6 @@ class DockerPs
     private $rows = [];
     private $lengths = [];
 
-    private $minColumnLength = 17;
     private $separatorLength = 3;
 
     public function __construct(Colors $colors)
@@ -76,9 +75,7 @@ class DockerPs
     protected function calculateLengths(array $row)
     {
         foreach ($row as $key => $col) {
-            if (!array_key_exists($key, $this->lengths)) {
-                $this->lengths[$key] = $this->minColumnLength;
-            }
+            $this->lengths[$key] = $this->lengths[$key] ?? 0;
 
             $length = strlen($col);
 
