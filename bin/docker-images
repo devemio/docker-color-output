@@ -39,7 +39,7 @@ class DockerImages
     private $colors;
     private $output = [];
     private $rows = [];
-    private $lengths = [0];
+    private $lengths = [];
     private $format;
 
     public function __construct(Colors $colors)
@@ -60,20 +60,21 @@ class DockerImages
     {
         foreach ($this->output as $line) {
             $this->rows[] = $row = preg_split('/\s{2,}/', $line);
-
-            $length = strlen($row[0]);
-
-            $this->lengths[0] = $length > $this->lengths[0] ? $length : $this->lengths[0];
+            for ($i = 0; $i < count($row); $i++) {
+                $length = strlen($row[$i]);
+                $this->lengths[$i] = $this->lengths[$i] ?? 0;
+                $this->lengths[$i] = $length > $this->lengths[$i] ? $length : $this->lengths[$i];
+            }
         }
     }
 
     protected function prepareFormat()
     {
-        $firstColumnLengthThreshold = 17;
-
-        $length = $this->lengths[0] >= $firstColumnLengthThreshold ? $this->lengths[0] + 13 : 30;
-
-        $this->format = "%-{$length}.{$length}s %-30.30s %-30.30s %-30.30s %-30.30s" . PHP_EOL;
+        foreach ($this->lengths as $length) {
+            $length += 13;
+            $this->format .= "%-{$length}.{$length}s ";
+        }
+        $this->format .= PHP_EOL;
     }
 
     protected function printHeader()
