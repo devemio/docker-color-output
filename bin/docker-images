@@ -71,7 +71,7 @@ class DockerImages
     protected function prepareFormat()
     {
         foreach ($this->lengths as $length) {
-            $length += 13;
+            $length = ($length > 4 ? $length : 4) + 13;
             $this->format .= "%-{$length}.{$length}s ";
         }
         $this->format .= PHP_EOL;
