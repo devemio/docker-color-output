@@ -33,7 +33,6 @@ docker ps -a | dco
 
 ```bash
 docker-compose ps | dco
-docker-compose ps -a | dco
 ```
 
 ![docker-compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
