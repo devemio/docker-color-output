@@ -4,26 +4,18 @@ This package allows you to colorize the docker output.
 
 ## ⚡️ Installation
 
-Clone the repo and add the following lines to `~/.bash_aliases` (`~/.bashrc`, `~/.zshrc`) file.
+**@FIXME**
 
-```bash
-DOCKER_COLOR_OUTPUT_PATH='/absolute-path-to-cloned-repo'
-alias di="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-images"
-alias dps="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-ps"
-alias dcps="$DOCKER_COLOR_OUTPUT_PATH/bin/docker-compose-ps"
-```
+### Aliases
 
-**Note:** change `DOCKER_COLOR_OUTPUT_PATH` to your absolute path where you cloned the repository.
+**@FIXME**
 
 ## 💥 Usage
-
-You can also pass all arguments as you pass to the command.
 
 ### 💡 Docker images
 
 ```bash
-# The 'docker images' command will be called.
-di
+docker images | dco
 ```
 
 ![docker images](https://user-images.githubusercontent.com/5787193/93581956-7ae7f580-f9aa-11ea-8f81-d6922e1ca892.png)
@@ -31,13 +23,8 @@ di
 ### 💡 Docker ps
 
 ```bash
-# The 'docker ps' command will be called.
-dps
-```
-
-```bash
-# The 'docker ps -a' command will be called.
-dps -a
+docker ps | dco
+docker ps -a | dco
 ```
 
 ![docker ps](https://user-images.githubusercontent.com/5787193/93581144-69521e00-f9a9-11ea-86bb-c23d7879c689.png)
@@ -45,8 +32,8 @@ dps -a
 ### 💡 Docker compose
 
 ```bash
-# The 'docker-compose ps' command will be called.
-dcps
+docker-compose ps | dco
+docker-compose ps -a | dco
 ```
 
 ![docker-compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
