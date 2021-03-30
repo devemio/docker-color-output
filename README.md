@@ -1,10 +1,6 @@
 # 🐳 Docker Color Output
 
-This package allows you to run Docker commands and get color output.
-
-## Requirements
-
-- **php** >= 7.0
+This package allows you to colorize the docker output.
 
 ## ⚡️ Installation
 
