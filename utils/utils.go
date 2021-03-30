@@ -8,7 +8,11 @@ import (
 )
 
 func Split(line string) []string {
-	return regexp.MustCompile("\\s{2,}").Split(line, -1)
+	cols := regexp.MustCompile("\\s{2,}").Split(line, -1)
+	if cols[0] == "" {
+		return cols[1:]
+	}
+	return cols
 }
 
 func GetMaxLens(lines []string) []int {

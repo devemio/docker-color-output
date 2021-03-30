@@ -33,7 +33,7 @@ func createLine(cmd string, line string) stdout.LinePrinter {
 	case console.DockerPs:
 		return stdout.CreateDockerPsLine(line)
 	case console.DockerComposePs:
-		return nil // @fixme
+		return stdout.CreateDockerComposePsLine(line)
 	default:
 		return nil
 	}
