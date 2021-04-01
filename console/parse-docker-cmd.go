@@ -6,7 +6,12 @@ import (
 )
 
 func ParseCmd(lines []string) (string, error) {
-	cols := utils.Split(lines[0])[:2]
+	cols := utils.Split(lines[0])
+	if len(cols) < 2 {
+		return "", errors.New("failed to split first line")
+	}
+
+	cols = cols[:2]
 
 	if equals(cols, []string{"REPOSITORY", "TAG"}) {
 		return DockerImages, nil
