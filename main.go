@@ -36,7 +36,7 @@ func main() {
 }
 
 func exit(err error) {
-	fmt.Println(color.LightRed("Error: " + err.Error()))
+	fmt.Println(color.LightRed("💡 Error: " + err.Error()))
 	console.Usage()
 	os.Exit(1)
 }
