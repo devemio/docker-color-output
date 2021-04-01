@@ -1,25 +1,26 @@
 package console
 
 import (
+	"errors"
 	"github.com/devemio/docker-color-output/utils"
 )
 
-func ParseCmd(lines []string) string {
+func ParseCmd(lines []string) (string, error) {
 	cols := utils.Split(lines[0])[:2]
 
 	if equals(cols, []string{"REPOSITORY", "TAG"}) {
-		return DockerImages
+		return DockerImages, nil
 	}
 
 	if equals(cols, []string{"CONTAINER ID", "IMAGE"}) {
-		return DockerPs
+		return DockerPs, nil
 	}
 
 	if equals(cols, []string{"Name", "Command"}) {
-		return DockerComposePs
+		return DockerComposePs, nil
 	}
 
-	panic("Failed to parse cmd")
+	return "", errors.New("failed to parse cmd")
 }
 
 func equals(a []string, b []string) bool {

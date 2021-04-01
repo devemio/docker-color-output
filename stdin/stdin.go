@@ -2,20 +2,19 @@ package stdin
 
 import (
 	"bufio"
-	"github.com/devemio/docker-color-output/console"
+	"errors"
 	"os"
 	"strings"
 )
 
-func GetLines() []string {
+func GetLines() ([]string, error) {
 	info, err := os.Stdin.Stat()
 	if err != nil {
-		panic(err)
+		return nil, err
 	}
 
 	if info.Mode()&os.ModeCharDevice != 0 || info.Size() <= 0 {
-		console.Usage()
-		os.Exit(1)
+		return nil, errors.New("no stdin")
 	}
 
 	var lines []string
@@ -28,8 +27,8 @@ func GetLines() []string {
 	}
 
 	if err := s.Err(); err != nil {
-		panic(err)
+		return nil, err
 	}
 
-	return lines
+	return lines, nil
 }
