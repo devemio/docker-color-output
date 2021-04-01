@@ -4,7 +4,7 @@ This package allows you to colorize the docker output.
 
 ## ⚡️ Installation
 
-You can download the binary file from the [releases page](../../releases/latest).
+Download the required binary file for your operating system from the [releases page](../../releases/latest).
 
 ### Aliases
 
