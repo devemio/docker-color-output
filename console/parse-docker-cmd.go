@@ -6,7 +6,12 @@ import (
 )
 
 func ParseCmd(lines []string) (string, error) {
+	if len(lines) == 0 {
+		return "", errors.New("no first line")
+	}
+
 	cols := utils.Split(lines[0])
+
 	if len(cols) < 2 {
 		return "", errors.New("invalid first line")
 	}
