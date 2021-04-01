@@ -8,12 +8,12 @@ import (
 )
 
 func GetLines() ([]string, error) {
-	info, err := os.Stdin.Stat()
+	fi, err := os.Stdin.Stat()
 	if err != nil {
 		return nil, err
 	}
 
-	if info.Mode()&os.ModeCharDevice != 0 || info.Size() <= 0 {
+	if fi.Mode()&os.ModeNamedPipe == 0 {
 		return nil, errors.New("no stdin")
 	}
 
