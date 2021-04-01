@@ -34,25 +34,13 @@ func (line DockerPsLine) Command() string {
 }
 
 func (line DockerPsLine) Created() string {
-	if strings.Contains(line.created, "second") {
-		return color.Green(line.created)
-	}
-	if strings.Contains(line.created, "minute") {
-		return color.Green(line.created)
-	}
-	if strings.Contains(line.created, "hour") {
-		return color.Green(line.created)
-	}
-	if strings.Contains(line.created, "days") {
-		return color.Brown(line.created)
-	}
-	if strings.Contains(line.created, "weeks") {
-		return color.Brown(line.created)
-	}
 	if strings.Contains(line.created, "months") {
+		return color.Brown(line.created)
+	}
+	if strings.Contains(line.created, "years") {
 		return color.Red(line.created)
 	}
-	return line.created
+	return color.Green(line.created)
 }
 
 func (line DockerPsLine) Status() string {
