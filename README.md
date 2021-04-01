@@ -16,7 +16,7 @@ Update the `DOCKER_COLOR_OUTPUT_PATH` variable and run the `source bash/aliases.
 ### 💡 Docker images
 
 ```bash
-di
+di # alias
 ```
 
 ```bash
@@ -28,7 +28,7 @@ docker images | dco
 ### 💡 Docker ps
 
 ```bash
-dps [-a]
+dps [-a] # alias
 ```
 
 ```bash
@@ -40,7 +40,7 @@ docker ps [-a] | dco
 ### 💡 Docker compose
 
 ```bash
-dcps
+dcps # alias
 ```
 
 ```bash
