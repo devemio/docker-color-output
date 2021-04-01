@@ -4,15 +4,20 @@ This package allows you to colorize the docker output.
 
 ## ⚡️ Installation
 
-**@FIXME**
+You can download the binary file from the [releases page](../../releases/latest).
 
 ### Aliases
 
-**@FIXME**
+For convenience, you can use the aliases from the [bash/aliases.sh](bash/aliases.sh) file.
+Update the `DOCKER_COLOR_OUTPUT_PATH` variable and run the `source aliases.sh` command.
 
 ## 💥 Usage
 
 ### 💡 Docker images
+
+```bash
+di
+```
 
 ```bash
 docker images | dco
@@ -23,13 +28,20 @@ docker images | dco
 ### 💡 Docker ps
 
 ```bash
-docker ps | dco
-docker ps -a | dco
+dps [-a]
+```
+
+```bash
+docker ps [-a] | dco
 ```
 
 ![docker ps](https://user-images.githubusercontent.com/5787193/93581144-69521e00-f9a9-11ea-86bb-c23d7879c689.png)
 
 ### 💡 Docker compose
+
+```bash
+dcps
+```
 
 ```bash
 docker-compose ps | dco
