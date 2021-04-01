@@ -46,6 +46,9 @@ func (line DockerPsLine) Created() string {
 	if strings.Contains(line.created, "days") {
 		return color.Brown(line.created)
 	}
+	if strings.Contains(line.created, "weeks") {
+		return color.Brown(line.created)
+	}
 	if strings.Contains(line.created, "months") {
 		return color.Red(line.created)
 	}
