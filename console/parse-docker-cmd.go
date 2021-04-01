@@ -8,7 +8,7 @@ import (
 func ParseCmd(lines []string) (string, error) {
 	cols := utils.Split(lines[0])
 	if len(cols) < 2 {
-		return "", errors.New("failed to split first line")
+		return "", errors.New("invalid first line")
 	}
 
 	cols = cols[:2]
@@ -25,7 +25,7 @@ func ParseCmd(lines []string) (string, error) {
 		return DockerComposePs, nil
 	}
 
-	return "", errors.New("failed to parse cmd")
+	return "", errors.New("invalid cmd")
 }
 
 func equals(a []string, b []string) bool {
