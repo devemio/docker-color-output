@@ -13,7 +13,7 @@ func GetLines() ([]string, error) {
 		return nil, err
 	}
 
-	if fi.Mode()&os.ModeNamedPipe == 0 || fi.Size() <= 0 {
+	if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
 		return nil, errors.New("no stdin")
 	}
 
