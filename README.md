@@ -9,7 +9,7 @@ Download the required binary file for your operating system from the [releases p
 ### Aliases
 
 For convenience, you can use the aliases from the [bash/aliases.sh](bash/aliases.sh) file.
-Update the `DOCKER_COLOR_OUTPUT_PATH` variable and run the `source aliases.sh` command.
+Update the `DOCKER_COLOR_OUTPUT_PATH` variable and run the `source bash/aliases.sh` command.
 
 ## 💥 Usage
 
