@@ -1,4 +1,4 @@
-# 🐳 Docker Color Output
+# 🐳 Docker Color Output 2.x
 
 This package allows you to colorize the docker output.
 
