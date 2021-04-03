@@ -1,14 +1,13 @@
-package main
+package utils
 
 import (
 	"fmt"
 	"github.com/devemio/docker-color-output/color"
-	"github.com/devemio/docker-color-output/console"
 	"os"
 )
 
-func exit(err error) {
+func Exit(err error, usage func()) {
 	fmt.Println(color.LightRed("💡 Error: " + err.Error()))
-	console.Usage()
+	usage()
 	os.Exit(1)
 }

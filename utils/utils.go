@@ -7,6 +7,8 @@ import (
 	"unicode"
 )
 
+type SplitContract func(line string) []string
+
 func Split(line string) []string {
 	cols := regexp.MustCompile("\\s{2,}").Split(line, -1)
 	if cols[0] == "" {
@@ -15,10 +17,10 @@ func Split(line string) []string {
 	return cols
 }
 
-func GetMaxLens(lines []string) []int {
-	lens := make([]int, len(Split(lines[0])))
+func GetMaxLens(lines []string, split SplitContract) []int {
+	lens := make([]int, len(split(lines[0])))
 	for _, line := range lines {
-		for i, v := range Split(line) {
+		for i, v := range split(line) {
 			length := len(v)
 			if strings.Contains(v, "…") {
 				length -= 2
