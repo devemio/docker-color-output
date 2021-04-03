@@ -1,6 +1,6 @@
 # 🐳 Docker Color Output 2.x
 
-![Go][1] ![Release][2] ![Downloads][3] [![License][4]][5]
+![Go][1] ![Release][2] [![License][3]][4] ![Downloads][5]
 
 This package allows you to colorize the docker output.
 
@@ -53,6 +53,6 @@ docker-compose ps | dco
 
 [1]: https://img.shields.io/github/go-mod/go-version/devemio/docker-color-output
 [2]: https://img.shields.io/github/v/release/devemio/docker-color-output
-[3]: https://img.shields.io/github/downloads/devemio/docker-color-output/total
-[4]: https://img.shields.io/badge/License-MIT-brightgreen.svg
-[5]: https://opensource.org/licenses/MIT
+[3]: https://img.shields.io/badge/License-MIT-brightgreen.svg
+[4]: https://opensource.org/licenses/MIT
+[5]: https://img.shields.io/github/downloads/devemio/docker-color-output/total
