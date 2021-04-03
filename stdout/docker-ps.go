@@ -79,7 +79,7 @@ func (line *DockerPsLine) Println(lens []int) {
 }
 
 func CreateDockerPsLine(line string) Line {
-	cols := split(line)
+	cols := SplitDockerPsLine(line)
 	return &DockerPsLine{
 		containerId: cols[0],
 		image:       cols[1],
@@ -91,7 +91,7 @@ func CreateDockerPsLine(line string) Line {
 	}
 }
 
-func split(line string) []string {
+func SplitDockerPsLine(line string) []string {
 	cols := utils.Split(line)
 	// If no ports column
 	if len(cols) == 6 {
