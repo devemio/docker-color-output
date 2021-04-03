@@ -15,25 +15,25 @@ type DockerImageLine struct {
 	size       string
 }
 
-func (line DockerImageLine) Repository() string {
+func (line *DockerImageLine) Repository() string {
 	if strings.Contains(line.repository, "/") {
 		return color.DarkGray(line.repository)
 	}
 	return color.White(line.repository)
 }
 
-func (line DockerImageLine) Tag() string {
+func (line *DockerImageLine) Tag() string {
 	if line.tag == "latest" {
 		return color.LightGreen(line.tag)
 	}
 	return line.tag
 }
 
-func (line DockerImageLine) ImageId() string {
+func (line *DockerImageLine) ImageId() string {
 	return color.DarkGray(line.imageId)
 }
 
-func (line DockerImageLine) Created() string {
+func (line *DockerImageLine) Created() string {
 	if strings.Contains(line.created, "days") {
 		return color.Green(line.created)
 	}
@@ -49,7 +49,7 @@ func (line DockerImageLine) Created() string {
 	return line.created
 }
 
-func (line DockerImageLine) Size() string {
+func (line *DockerImageLine) Size() string {
 	if strings.Contains(line.size, "GB") {
 		return color.Red(line.size)
 	}
@@ -59,7 +59,7 @@ func (line DockerImageLine) Size() string {
 	return line.size
 }
 
-func (line DockerImageLine) Println(lens []int) {
+func (line *DockerImageLine) Println(lens []int) {
 	fmt.Println(
 		Format(line.Repository(), lens[0]),
 		Format(line.Tag(), lens[1]),
@@ -69,7 +69,7 @@ func (line DockerImageLine) Println(lens []int) {
 	)
 }
 
-func CreateDockerImageLine(line string) *DockerImageLine {
+func CreateDockerImageLine(line string) Line {
 	cols := utils.Split(line)
 	return &DockerImageLine{
 		repository: cols[0],

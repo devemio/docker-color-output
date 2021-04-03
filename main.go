@@ -41,7 +41,7 @@ func exit(err error) {
 	os.Exit(1)
 }
 
-func createLine(cmd string, line string) stdout.LinePrinter {
+func createLine(cmd string, line string) stdout.Line {
 	switch cmd {
 	case console.DockerImages:
 		return stdout.CreateDockerImageLine(line)

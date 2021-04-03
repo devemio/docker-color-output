@@ -17,11 +17,11 @@ type DockerPsLine struct {
 	names       string
 }
 
-func (line DockerPsLine) ContainerId() string {
+func (line *DockerPsLine) ContainerId() string {
 	return color.DarkGray(line.containerId)
 }
 
-func (line DockerPsLine) Image() string {
+func (line *DockerPsLine) Image() string {
 	parts := strings.Split(line.image, ":")
 	if len(parts) == 2 {
 		return color.Yellow(parts[0]) + color.LightGreen(":"+parts[1])
@@ -29,11 +29,11 @@ func (line DockerPsLine) Image() string {
 	return color.Yellow(line.image)
 }
 
-func (line DockerPsLine) Command() string {
+func (line *DockerPsLine) Command() string {
 	return color.DarkGray(line.command)
 }
 
-func (line DockerPsLine) Created() string {
+func (line *DockerPsLine) Created() string {
 	if strings.Contains(line.created, "months") {
 		return color.Brown(line.created)
 	}
@@ -43,14 +43,14 @@ func (line DockerPsLine) Created() string {
 	return color.Green(line.created)
 }
 
-func (line DockerPsLine) Status() string {
+func (line *DockerPsLine) Status() string {
 	if strings.Contains(line.status, "Exited") {
 		return color.Red(line.status)
 	}
 	return color.LightGreen(line.status)
 }
 
-func (line DockerPsLine) Ports() string {
+func (line *DockerPsLine) Ports() string {
 	var ports []string
 	for _, port := range strings.Split(line.ports, ",") {
 		parts := strings.Split(port, "->")
@@ -62,11 +62,11 @@ func (line DockerPsLine) Ports() string {
 	return strings.Join(ports, ", ")
 }
 
-func (line DockerPsLine) Names() string {
+func (line *DockerPsLine) Names() string {
 	return color.White(line.names)
 }
 
-func (line DockerPsLine) Println(lens []int) {
+func (line *DockerPsLine) Println(lens []int) {
 	fmt.Println(
 		Format(line.ContainerId(), lens[0]),
 		Format(line.Image(), lens[1]),
@@ -78,7 +78,7 @@ func (line DockerPsLine) Println(lens []int) {
 	)
 }
 
-func CreateDockerPsLine(line string) *DockerPsLine {
+func CreateDockerPsLine(line string) Line {
 	cols := split(line)
 	return &DockerPsLine{
 		containerId: cols[0],

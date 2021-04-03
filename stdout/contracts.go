@@ -1,5 +1,5 @@
 package stdout
 
-type LinePrinter interface {
+type Line interface {
 	Println(lens []int)
 }

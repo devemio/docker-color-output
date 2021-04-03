@@ -18,7 +18,7 @@ func (line *FirstLine) Println(lens []int) {
 	fmt.Println()
 }
 
-func CreateFirstLine(line string) *FirstLine {
+func CreateFirstLine(line string) Line {
 	return &FirstLine{
 		cols: utils.Split(line),
 	}
