@@ -78,7 +78,7 @@ func (line *DockerPsLine) Println(lens []int) {
 	)
 }
 
-func CreateDockerPsLine(line string) Line {
+func CreateDockerPsLine(line string) *DockerPsLine {
 	cols := SplitDockerPsLine(line)
 	return &DockerPsLine{
 		containerId: cols[0],

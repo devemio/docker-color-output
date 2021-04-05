@@ -69,7 +69,7 @@ func (line *DockerImageLine) Println(lens []int) {
 	)
 }
 
-func CreateDockerImageLine(line string) Line {
+func CreateDockerImageLine(line string) *DockerImageLine {
 	cols := utils.Split(line)
 	return &DockerImageLine{
 		repository: cols[0],

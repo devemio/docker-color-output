@@ -53,7 +53,7 @@ func (line *DockerComposePsLine) Println(lens []int) {
 	)
 }
 
-func CreateDockerComposePsLine(line string) Line {
+func CreateDockerComposePsLine(line string) *DockerComposePsLine {
 	cols := utils.Split(line)
 	return &DockerComposePsLine{
 		name:    cols[0],
