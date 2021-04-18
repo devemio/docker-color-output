@@ -1,0 +1,39 @@
+#!/usr/bin/env bash
+# Parse the inputted command and decide to pass or filter the output
+
+# This supposes that docker-color-output exists at PATH as dco-filter
+# I suggest using in a way similar to https://github.com/garabik/grc 
+# usage: dco docker ps
+
+# That makes it easier for users to add aliases such as:
+# alias docker='sudo dco docker'
+# alias docker-compose='sudo dco docker-compose'
+
+_check() {
+    for mode in "${supported[@]}"; do
+        if [ "$arg" = "$mode" ]; then
+            return 0 # supported
+        fi
+    done
+    return 1 # not supported
+}
+
+_invoke() {
+    local arg supported # pass-by-reference
+    
+    arg="$1"
+    supported=(docker docker-compose)
+    _check || return 1 # not supported
+
+    arg="$2"
+    supported=(ps images)
+    _check && return 1 # not supported
+
+    return 0 # supported
+}
+
+if invoke; then
+    "$@" | dco-filter
+else
+    "$@"
+fi
