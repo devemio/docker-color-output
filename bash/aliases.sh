@@ -1,15 +1,13 @@
 #!/usr/bin/env bash
 
-DOCKER_COLOR_OUTPUT_PATH="$(cd "$(dirname "${BASH_SOURCE[0]}")" &> /dev/null && pwd)/bin/dco-darwin-amd64"
-
 di() {
-  docker images $@ | $DOCKER_COLOR_OUTPUT_PATH
+  docker images $@ | docker-color-output
 }
 
 dps() {
-  docker ps $@ | $DOCKER_COLOR_OUTPUT_PATH
+  docker ps $@ | docker-color-output
 }
 
 dcps() {
-  docker-compose ps $@ | $DOCKER_COLOR_OUTPUT_PATH
+  docker-compose ps $@ | docker-color-output
 }
