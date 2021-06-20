@@ -16,7 +16,7 @@ brew install dldash/core/docker-color-output
 
 Download a binary file from the [releases page](../../releases/latest).
 
-### Aliases
+### 🧊 Aliases
 
 For convenience you can add aliases from the [bash/aliases.sh](bash/aliases.sh) file.
 
