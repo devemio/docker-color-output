@@ -18,8 +18,7 @@ Download a binary file from the [releases page](../../releases/latest).
 
 ### Aliases
 
-For convenience, you can use the aliases from the [bash/aliases.sh](bash/aliases.sh) file. Update
-the `DOCKER_COLOR_OUTPUT_PATH` variable and run the `source bash/aliases.sh` command.
+For convenience you can add aliases from the [bash/aliases.sh](bash/aliases.sh) file.
 
 ## 💥 Usage
 
@@ -30,7 +29,7 @@ di # alias
 ```
 
 ```bash
-docker images | dco
+docker images | docker-color-output
 ```
 
 ![docker images](https://user-images.githubusercontent.com/5787193/93581956-7ae7f580-f9aa-11ea-8f81-d6922e1ca892.png)
@@ -42,7 +41,7 @@ dps [-a] # alias
 ```
 
 ```bash
-docker ps [-a] | dco
+docker ps [-a] | docker-color-output
 ```
 
 ![docker ps](https://user-images.githubusercontent.com/5787193/93581144-69521e00-f9a9-11ea-86bb-c23d7879c689.png)
@@ -54,7 +53,7 @@ dcps # alias
 ```
 
 ```bash
-docker-compose ps | dco
+docker-compose ps | docker-color-output
 ```
 
 ![docker-compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
