@@ -8,13 +8,17 @@ This package allows you to colorize the docker output.
 
 ### 🍏 macOS
 
-```
+```bash
 brew install dldash/core/docker-color-output
 ```
 
 ### 🏝 Linux
 
-Download a binary file from the [releases page](../../releases/latest).
+```bash
+sudo add-apt-repository ppa:dldash/core
+sudo apt update
+sudo apt install docker-color-output
+```
 
 ### 🧊 Aliases
 
