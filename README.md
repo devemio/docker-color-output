@@ -6,7 +6,7 @@ This package allows you to colorize the docker output.
 
 ## ⚡️ Installation
 
-### 🍏 macOS
+### 🍏 Mac
 
 ```bash
 brew install dldash/core/docker-color-output
