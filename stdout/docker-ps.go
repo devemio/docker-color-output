@@ -52,7 +52,7 @@ func (line *DockerPsLine) Status() string {
 
 func (line *DockerPsLine) Ports() string {
 	var ports []string
-	for _, port := range strings.Split(line.ports, ",") {
+	for _, port := range strings.Split(line.ports, ", ") {
 		parts := strings.Split(port, "->")
 		if len(parts) == 2 {
 			port = color.LightCyan(parts[0]) + "->" + parts[1]
