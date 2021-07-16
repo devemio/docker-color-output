@@ -10,8 +10,8 @@ build:
 
 lint:
 	@docker run --rm \
-		-v $(shell pwd):/app \
 		-w /app \
+		-v $(shell pwd):/app \
 		golangci/golangci-lint golangci-lint run
 
 clean:
