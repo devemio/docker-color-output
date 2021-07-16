@@ -2,9 +2,10 @@ package stdout
 
 import (
 	"fmt"
+	"strings"
+
 	"github.com/devemio/docker-color-output/color"
 	"github.com/devemio/docker-color-output/utils"
-	"strings"
 )
 
 type DockerImageLine struct {
