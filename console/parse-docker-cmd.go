@@ -2,6 +2,7 @@ package console
 
 import (
 	"errors"
+
 	"github.com/devemio/docker-color-output/utils"
 )
 

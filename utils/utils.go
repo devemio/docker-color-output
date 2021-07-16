@@ -10,7 +10,7 @@ import (
 type SplitContract func(line string) []string
 
 func Split(line string) []string {
-	cols := regexp.MustCompile("\\s{2,}").Split(line, -1)
+	cols := regexp.MustCompile(`\s{2,}`).Split(line, -1)
 	if cols[0] == "" {
 		return cols[1:]
 	}

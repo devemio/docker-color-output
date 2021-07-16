@@ -2,6 +2,7 @@ package console
 
 import (
 	"fmt"
+
 	"github.com/devemio/docker-color-output/color"
 )
 

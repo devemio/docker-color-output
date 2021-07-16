@@ -2,8 +2,9 @@ package utils
 
 import (
 	"fmt"
-	"github.com/devemio/docker-color-output/color"
 	"os"
+
+	"github.com/devemio/docker-color-output/color"
 )
 
 func Exit(err error, usage func()) {
