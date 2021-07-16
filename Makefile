@@ -16,4 +16,4 @@ lint:
 		golangci/golangci-lint golangci-lint run
 
 clean:
-	@rm -f $(BIN)/$(APP)-* && echo "\033[0;32mDone.\033[0m"
+	@rm -f $(BIN)/$(APP)-*
