@@ -1,4 +1,5 @@
 .PHONY: build lint clean
+.SILENT: build lint clean
 
 GO=$(shell which go)
 BIN=$(CURDIR)/bin
@@ -9,10 +10,10 @@ build:
 	GOOS=linux GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-linux-amd64
 
 lint:
-	@docker run --rm \
+	docker run --rm \
 		-w /app \
 		-v $(shell pwd):/app \
 		golangci/golangci-lint golangci-lint run
 
 clean:
-	@rm -f $(BIN)/$(APP)-*
+	rm -f $(BIN)/$(APP)-*
