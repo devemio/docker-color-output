@@ -1,16 +1,17 @@
-GO = $(shell which go)
-GOBIN = $(shell $(GO) env GOPATH)/bin
-BINPATH = $(CURDIR)/bin
+.PHONY: build lint cleanup
 
-.PHONY: build
+GO=$(shell which go)
+BIN=$(CURDIR)/bin
 
 build:
-	GOOS=darwin GOARCH=amd64 $(GO) build -o $(BINPATH)/dco-darwin-amd64 && \
-	GOOS=linux GOARCH=amd64 $(GO) build -o $(BINPATH)/dco-linux-amd64
-
-deps_lint:
-	curl -sfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | \
-		sh -s -- -b $(GOBIN) v1.41.1
+	GOOS=darwin GOARCH=amd64 $(GO) build -o $(BIN)/dco-darwin-amd64 && \
+	GOOS=linux GOARCH=amd64 $(GO) build -o $(BIN)/dco-linux-amd64
 
 lint:
-	golangci-lint run
+	@docker run --rm \
+		-v $(shell pwd):/app \
+		-w /app \
+		golangci/golangci-lint golangci-lint run
+
+cleanup:
+	@rm -f $(BIN)/dco-* && echo "\033[0;32mDone.\033[0m"

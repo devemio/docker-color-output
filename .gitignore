@@ -1,5 +1,6 @@
 bin
 .gnupg
 
+# Temporary editor files
 *.sw[pno]
 *~

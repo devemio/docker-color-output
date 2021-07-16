@@ -33,10 +33,10 @@ linters:
     - revive
 
 linters-settings:
-    revive:
-        rules:
-            - name: var-naming
-              disabled: true
+  revive:
+    rules:
+      - name: var-naming
+        disabled: true
 
 output:
-    format: tab
+  format: tab
