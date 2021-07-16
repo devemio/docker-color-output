@@ -6,8 +6,7 @@ APP=dco
 
 build:
 	GOOS=darwin GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-darwin-amd64 && \
-	GOOS=linux GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-linux-amd64 && \
-	echo "\033[0;32mDone.\033[0m"
+	GOOS=linux GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-linux-amd64
 
 lint:
 	@docker run --rm \
