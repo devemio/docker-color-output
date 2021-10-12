@@ -4,7 +4,6 @@ import (
 	"bufio"
 	"errors"
 	"os"
-	"strings"
 )
 
 func GetLines() ([]string, error) {
@@ -20,10 +19,7 @@ func GetLines() ([]string, error) {
 	var lines []string
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		line := s.Text()
-		if !strings.HasPrefix(line, "-") {
-			lines = append(lines, s.Text())
-		}
+		lines = append(lines, s.Text())
 	}
 
 	if err := s.Err(); err != nil {

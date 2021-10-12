@@ -27,7 +27,7 @@ func ParseCmd(lines []string) (string, error) {
 		return DockerPs, nil
 	}
 
-	if equals(cols, []string{"Name", "Command"}) {
+	if equals(cols, []string{"NAME", "COMMAND"}) {
 		return DockerComposePs, nil
 	}
 
