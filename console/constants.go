@@ -2,7 +2,7 @@ package console
 
 const (
 	App     = "docker-color-output"
-	Version = "2.0.1"
+	Version = "2.1.0"
 
 	DockerPs        = "docker ps"
 	DockerImages    = "docker images"

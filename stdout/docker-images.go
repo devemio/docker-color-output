@@ -35,6 +35,9 @@ func (line *DockerImageLine) ImageId() string {
 }
 
 func (line *DockerImageLine) Created() string {
+	if strings.Contains(line.created, "hour") {
+		return color.Green(line.created)
+	}
 	if strings.Contains(line.created, "days") {
 		return color.Green(line.created)
 	}
