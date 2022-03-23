@@ -52,7 +52,7 @@ docker ps [-a] | docker-color-output
 
 ### 💡 docker compose ps
 
-⚠️ NOTE: The latest version works with docker-compose `2.x`.
+⚠️ The latest version works with docker-compose `2.x`.
 
 ```bash
 dcps # alias
