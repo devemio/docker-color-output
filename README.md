@@ -22,7 +22,7 @@ sudo apt install docker-color-output
 
 ### 🧊 Aliases
 
-For convenience you can add aliases from the [bash/aliases.sh](bash/aliases.sh) file.
+For convenience you can add aliases from the [aliases](bash/aliases.sh) file.
 
 ## 💥 Usage
 
