@@ -9,5 +9,5 @@ dps() {
 }
 
 dcps() {
-  docker-compose ps $@ | docker-color-output
+  docker compose ps $@ | docker-color-output
 }
