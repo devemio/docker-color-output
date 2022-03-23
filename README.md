@@ -62,7 +62,7 @@ dcps # alias
 docker compose ps | docker-color-output
 ```
 
-![docker-compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
+![docker compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
 
 [1]: https://img.shields.io/github/go-mod/go-version/devemio/docker-color-output
 [2]: https://img.shields.io/badge/License-MIT-brightgreen.svg
