@@ -26,7 +26,7 @@ For convenience you can add aliases from the [bash/aliases.sh](bash/aliases.sh) 
 
 ## 💥 Usage
 
-### 💡 Docker images
+### 💡 docker images
 
 ```bash
 di # alias
@@ -38,7 +38,7 @@ docker images | docker-color-output
 
 ![docker images](https://user-images.githubusercontent.com/5787193/93581956-7ae7f580-f9aa-11ea-8f81-d6922e1ca892.png)
 
-### 💡 Docker ps
+### 💡 docker ps
 
 ```bash
 dps [-a] # alias
@@ -50,14 +50,16 @@ docker ps [-a] | docker-color-output
 
 ![docker ps](https://user-images.githubusercontent.com/5787193/93581144-69521e00-f9a9-11ea-86bb-c23d7879c689.png)
 
-### 💡 Docker compose
+### 💡 docker compose ps
+
+⚠️ NOTE: The latest version works with docker-compose `2.x`.
 
 ```bash
 dcps # alias
 ```
 
 ```bash
-docker-compose ps | docker-color-output
+docker compose ps | docker-color-output
 ```
 
 ![docker-compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
