@@ -30,7 +30,7 @@ sudo apt install docker-color-output
 
 #### 🪄 Aliases
 
-For convenience use these [aliases](bash/aliases.sh).
+Use these [aliases](bash/aliases.sh) for better interaction.
 
 ## 📚 Usage
 
