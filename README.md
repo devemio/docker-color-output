@@ -1,4 +1,4 @@
-# 🐳 Docker Color Output 2.x
+<p align="center"><img src="https://user-images.githubusercontent.com/5787193/161379888-ac5ad377-074d-4965-9966-6aef5a8c6ce0.png"></p>
 
 <p align="center">
 <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/License-MIT-blue.svg" alt="License"></a>
