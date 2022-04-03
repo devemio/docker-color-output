@@ -21,22 +21,15 @@ linters:
     - lll
     - misspell
     - nakedret
-    - exportloopref
     - staticcheck
     - structcheck
+    - stylecheck
     - typecheck
     - unconvert
     - unparam
     - unused
     - varcheck
     - whitespace
-    - revive
-
-linters-settings:
-  revive:
-    rules:
-      - name: var-naming
-        disabled: true
 
 output:
   format: tab

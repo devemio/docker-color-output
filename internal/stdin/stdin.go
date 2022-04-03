@@ -6,7 +6,7 @@ import (
 	"os"
 )
 
-func GetLines() ([]string, error) {
+func Get() ([]string, error) {
 	fi, err := os.Stdin.Stat()
 	if err != nil {
 		return nil, err
@@ -16,15 +16,15 @@ func GetLines() ([]string, error) {
 		return nil, errors.New("no stdin")
 	}
 
-	var lines []string
+	var res []string
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		lines = append(lines, s.Text())
+		res = append(res, s.Text())
 	}
 
 	if err := s.Err(); err != nil {
 		return nil, err
 	}
 
-	return lines, nil
+	return res, nil
 }
