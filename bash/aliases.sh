@@ -1,13 +1,13 @@
 #!/usr/bin/env bash
 
 di() {
-  docker images $@ | docker-color-output
+  docker images "$@" | docker-color-output
 }
 
 dps() {
-  docker ps $@ | docker-color-output
+  docker ps "$@" | docker-color-output
 }
 
 dcps() {
-  docker compose ps $@ | docker-color-output
+  docker compose ps "$@" | docker-color-output
 }
