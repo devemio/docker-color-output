@@ -61,7 +61,8 @@ func (*DockerPsLineFmt) Names(v string) string {
 	return color.White(v)
 }
 
-func (f *DockerPsLineFmt) Format(col string, v string) string {
+func (f *DockerPsLineFmt) Format(vals map[string]string, col string) string {
+	v := vals[col]
 	switch col {
 	case "CONTAINER ID":
 		return f.ContainerID(v)

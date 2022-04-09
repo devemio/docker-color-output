@@ -27,7 +27,7 @@ func (*DockerImagesLineFmt) Tag(v string) string {
 	return v
 }
 
-func (*DockerImagesLineFmt) ImageId(v string) string {
+func (*DockerImagesLineFmt) ImageID(v string) string {
 	return color.DarkGray(v)
 }
 
@@ -60,14 +60,15 @@ func (*DockerImagesLineFmt) Size(v string) string {
 	return v
 }
 
-func (f *DockerImagesLineFmt) Format(col string, v string) string {
+func (f *DockerImagesLineFmt) Format(vals map[string]string, col string) string {
+	v := vals[col]
 	switch col {
 	case "REPOSITORY":
 		return f.Repository(v)
 	case "TAG":
 		return f.Tag(v)
 	case "IMAGE ID":
-		return f.ImageId(v)
+		return f.ImageID(v)
 	case "CREATED":
 		return f.Created(v)
 	case "SIZE":

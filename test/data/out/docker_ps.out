@@ -1,0 +1,3 @@
+[1;34mCONTAINER ID[0m   [1;34mIMAGE[0m         [1;34mCOMMAND[0m                  [1;34mCREATED[0m              [1;34mSTATUS[0m              [1;34mPORTS[0m                  [1;34mNAMES[0m         
+[1;30m24c5774ef118[0m   [1;33mdldash/home[0m   [1;30m"/docker-entrypoint.…"[0m   [0;32m25 seconds ago[0m       [1;32mUp 24 seconds[0m       [1;36m0.0.0.0:3000[0m->80/tcp   [1;37mdldash.home[0m   
+[1;30m10f3c0ac6560[0m   [1;33mredis[0m         [1;30m"docker-entrypoint.s…"[0m   [0;32mAbout a minute ago[0m   [1;32mUp About a minute[0m   6379/tcp               [1;37mredis[0m         

@@ -2,24 +2,19 @@ package cmd
 
 import (
 	"errors"
-	"log"
 	"strings"
 
 	"docker-color-output/internal/lines"
 	"docker-color-output/internal/utils"
 	"docker-color-output/internal/utils/pointer"
-	"docker-color-output/pkg/color"
 )
 
 func ParseCmd(in []string) (Cmd, error) {
-	if len(in) == 0 {
+	if len(in) == 0 || len(in[0]) == 0 {
 		return "", errors.New("no first line")
 	}
 
 	parts := utils.Split(in[0])
-	if len(parts) == 0 {
-		return "", errors.New("no first line")
-	}
 
 	if utils.Intersect(parts, DockerPs.Columns()) {
 		return DockerPs, nil
@@ -36,11 +31,11 @@ func ParseCmd(in []string) (Cmd, error) {
 	return "", errors.New("invalid first line")
 }
 
-func ParseFirstLine(in string) ([]lines.Column, []string) {
+func ParseFirstLine(in string) ([]lines.Column, lines.Values) {
 	parts := utils.Split(in)
 
 	cols := make([]lines.Column, len(parts))
-	values := make([]string, len(parts))
+	vals := make(lines.Values, len(parts))
 
 	for i, part := range parts {
 		cols[i] = lines.Column{
@@ -48,29 +43,30 @@ func ParseFirstLine(in string) ([]lines.Column, []string) {
 			Len:  pointer.ToInt(len(part)),
 		}
 
-		values[i] = part
+		vals[part] = part
 	}
 
-	return cols, values
+	return cols, vals
 }
 
-func ParseLines(ins []string, cols []lines.Column) [][]string {
-	rows := make([][]string, len(ins))
+func ParseLines(ins []string, cols []lines.Column) ([]lines.Values, error) {
+	if calculateNullableCols(cols) > 1 {
+		return nil, errors.New("nullable columns more than one")
+	}
+
+	rows := make([]lines.Values, len(ins))
 
 	for i, in := range ins {
-		rows[i] = make([]string, len(cols))
+		rows[i] = make(lines.Values, len(cols))
 
 		parts := utils.Split(in)
 
 		offset := 0
-		mismatches := len(cols) - len(parts)
-		if mismatches > 1 {
-			log.Fatal(color.Red("nullable columns more than two")) // panic
-		}
+		mismatch := len(parts) < len(cols)
 
 		for j, col := range cols {
-			if mismatches > 0 && (col.Name == "PORTS" || col.Name == "MOUNTS") {
-				offset += 1
+			if mismatch && col.IsNullable() {
+				offset++
 				continue
 			}
 
@@ -85,9 +81,20 @@ func ParseLines(ins []string, cols []lines.Column) [][]string {
 				*col.Len = l
 			}
 
-			rows[i][j] = v
+			rows[i][col.Name] = v
 		}
 	}
 
-	return rows
+	return rows, nil
+}
+
+func calculateNullableCols(cols []lines.Column) byte {
+	var total byte = 0
+	for _, col := range cols {
+		if col.IsNullable() {
+			total++
+		}
+	}
+
+	return total
 }

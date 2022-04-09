@@ -12,8 +12,8 @@ func NewDockerComposePsLineFmt() *DockerComposePsLineFmt {
 	return &DockerComposePsLineFmt{}
 }
 
-func (*DockerComposePsLineFmt) Name(v string) string {
-	if strings.Contains(v, "exited") { // @fixme status
+func (*DockerComposePsLineFmt) Name(v, status string) string {
+	if strings.Contains(status, "exited") {
 		return color.DarkGray(v)
 	}
 	return color.White(v)
@@ -23,8 +23,8 @@ func (*DockerComposePsLineFmt) Command(v string) string {
 	return color.DarkGray(v)
 }
 
-func (*DockerComposePsLineFmt) Service(v string) string {
-	if strings.Contains(v, "exited") { // @fixme status
+func (*DockerComposePsLineFmt) Service(v, status string) string {
+	if strings.Contains(status, "exited") {
 		return color.DarkGray(v)
 	}
 	return color.Yellow(v)
@@ -49,14 +49,15 @@ func (*DockerComposePsLineFmt) Ports(v string) string {
 	return strings.Join(ports, ", ")
 }
 
-func (f *DockerComposePsLineFmt) Format(col string, v string) string {
+func (f *DockerComposePsLineFmt) Format(vals map[string]string, col string) string {
+	v := vals[col]
 	switch col {
 	case "NAME":
-		return f.Name(v)
+		return f.Name(v, vals["STATUS"])
 	case "COMMAND":
 		return f.Command(v)
 	case "SERVICE":
-		return f.Service(v)
+		return f.Service(v, vals["STATUS"])
 	case "STATUS":
 		return f.Status(v)
 	case "PORTS":

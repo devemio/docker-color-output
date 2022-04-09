@@ -2,7 +2,6 @@ package utils
 
 import (
 	"fmt"
-	"os"
 	"regexp"
 	"strconv"
 	"strings"
@@ -19,6 +18,7 @@ func Split(v string) []string {
 
 func Pad(value string, length int) string {
 	length += NonPrintableCharactersLength * strings.Count(value, "\033[0m")
+
 	return fmt.Sprintf("%-"+strconv.Itoa(length+SpaceLength)+"s", value)
 }
 
@@ -35,9 +35,4 @@ func Intersect(needle, haystack []string) bool {
 	}
 
 	return true
-}
-
-func Debug(value any) { // @fixme
-	fmt.Printf("\n---\n%#v\n---\n\n", value)
-	os.Exit(0)
 }

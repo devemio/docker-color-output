@@ -1,0 +1,4 @@
+[1;34mREPOSITORY[0m               [1;34mTAG[0m      [1;34mIMAGE ID[0m       [1;34mCREATED[0m        [1;34mSIZE[0m     
+[1;30mdldash/home[0m              [1;32mlatest[0m   [1;30mb310e6b0fb4d[0m   [0;32m15 hours ago[0m   23.5MB   
+[1;37mredis[0m                    [1;32mlatest[0m   [1;30mbba24acba395[0m   [0;32m11 days ago[0m    113MB    
+[1;30mgolangci/golangci-lint[0m   [1;32mlatest[0m   [1;30m94f49b27b197[0m   [0;32m2 weeks ago[0m    [0;33m987MB[0m    

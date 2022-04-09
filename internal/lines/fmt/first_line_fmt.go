@@ -8,6 +8,6 @@ func NewFirstLineFmt() *FirstLineFmt {
 	return &FirstLineFmt{}
 }
 
-func (f *FirstLineFmt) Format(_ string, v string) string {
-	return color.LightBlue(v)
+func (f *FirstLineFmt) Format(_ map[string]string, col string) string {
+	return color.LightBlue(col)
 }

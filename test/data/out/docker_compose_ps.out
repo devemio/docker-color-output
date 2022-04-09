@@ -1,0 +1,3 @@
+[1;34mNAME[0m      [1;34mCOMMAND[0m                  [1;34mSERVICE[0m   [1;34mSTATUS[0m       [1;34mPORTS[0m      
+[1;30mcluster[0m   [1;30m"docker-entrypoint.s…"[0m   [1;30mcluster[0m   [0;31mexited (0)[0m              
+[1;37mredis[0m     [1;30m"docker-entrypoint.s…"[0m   [1;33mredis[0m     [1;32mrunning[0m      6379/tcp   
