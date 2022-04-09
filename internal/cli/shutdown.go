@@ -1,3 +1,5 @@
+//go:build !test
+
 package cli
 
 import (
@@ -12,8 +14,8 @@ func Exit(err error) {
 	fmt.Println(color.LightRed("💡 Error: " + err.Error()))
 	fmt.Println("💥 Docker color output " + color.Green(Ver))
 	fmt.Println("⚡️ Usage:")
-	fmt.Println("    " + color.Green(cmd.DockerImages.String()) + " | " + color.Brown(App))
-	fmt.Println("    " + color.Green(cmd.DockerPs.String()) + " [-a] | " + color.Brown(App))
 	fmt.Println("    " + color.Green(cmd.DockerComposePs.String()) + " [-a] | " + color.Brown(App))
+	fmt.Println("    " + color.Green(cmd.DockerImages.String()) + " [--format] | " + color.Brown(App))
+	fmt.Println("    " + color.Green(cmd.DockerPs.String()) + " [-a] [--format] | " + color.Brown(App))
 	os.Exit(1)
 }

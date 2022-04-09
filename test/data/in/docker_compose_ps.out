@@ -1,0 +1,3 @@
+NAME                COMMAND                  SERVICE             STATUS              PORTS
+cluster             "docker-entrypoint.s…"   cluster             exited (0)          
+redis               "docker-entrypoint.s…"   redis               running             6379/tcp

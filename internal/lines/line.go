@@ -8,27 +8,23 @@ import (
 )
 
 type Line struct {
-	values []string
-	cols   []Column
-	fmt    fmt.Formatable
+	vals Values
+	cols []Column
+	fmt  fmt.Formatable
 }
 
-func NewLine(values []string, cols []Column, fmt fmt.Formatable) *Line {
+func NewLine(vals Values, cols []Column, fmt fmt.Formatable) *Line {
 	return &Line{
-		values: values,
-		cols:   cols,
-		fmt:    fmt,
+		vals: vals,
+		cols: cols,
+		fmt:  fmt,
 	}
 }
 
 func (l *Line) Build() string {
 	var sb strings.Builder
-
-	for i, col := range l.cols {
-		v := l.values[i]
-		v = l.fmt.Format(col.Name, v)
-		v = utils.Pad(v, *col.Len)
-		sb.WriteString(v)
+	for _, col := range l.cols {
+		sb.WriteString(utils.Pad(l.fmt.Format(l.vals, col.Name), *col.Len))
 	}
 
 	return sb.String()

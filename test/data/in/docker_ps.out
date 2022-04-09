@@ -1,0 +1,3 @@
+CONTAINER ID   IMAGE         COMMAND                  CREATED              STATUS              PORTS                  NAMES
+24c5774ef118   dldash/home   "/docker-entrypoint.…"   25 seconds ago       Up 24 seconds       0.0.0.0:3000->80/tcp   dldash.home
+10f3c0ac6560   redis         "docker-entrypoint.s…"   About a minute ago   Up About a minute   6379/tcp               redis

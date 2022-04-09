@@ -24,17 +24,17 @@ func (c Cmd) Columns() []string {
 			"NAMES",        //
 			"LABELS",       // opt
 			"MOUNTS",       // opt | nullable
-			"NETWORKS",     // opt
+			"NETWORKS",     // opt | nullable
 		}
 	case DockerImages:
 		return []string{
-			"IMAGE ID",
-			"REPOSITORY",
-			"TAG",
-			"DIGEST",
-			"CREATED",
-			"CREATED AT",
-			"SIZE",
+			"IMAGE ID",   //
+			"REPOSITORY", //
+			"TAG",        //
+			"DIGEST",     // opt
+			"CREATED",    //
+			"CREATED AT", // opt
+			"SIZE",       //
 		}
 	case DockerComposePs:
 		return []string{

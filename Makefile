@@ -9,7 +9,7 @@ build:
 	$(GO) build -o $(BIN)/$(APP) ./cmd/cli
 
 test:
-	go test -v ./...
+	go test ./...
 
 clean:
 	rm -f $(BIN)/$(APP)*

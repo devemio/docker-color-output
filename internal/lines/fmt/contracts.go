@@ -1,5 +1,5 @@
 package fmt
 
 type Formatable interface {
-	Format(col string, v string) string
+	Format(vals map[string]string, col string) string
 }
