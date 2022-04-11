@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 # Usage:
-#  alias docker='bash path/to/docker.sh docker'
-#  alias docker-compose='bash path/to/docker.sh docker-compose' (optional)
+#  alias docker='bash decorator.sh docker'
+#  alias docker-compose='bash decorator.sh docker-compose'
 if [[ "$1" == "docker" ]]; then
   if [[ "$2" == "ps" || "$2" == "images" ]]; then
     "$@" | docker-color-output
