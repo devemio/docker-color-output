@@ -9,12 +9,12 @@ import (
 	"docker-color-output/internal/utils/pointer"
 )
 
-func ParseCmd(in []string) (Cmd, error) {
-	if len(in) == 0 || len(in[0]) == 0 {
+func ParseCmd(in *[]string) (Cmd, error) {
+	if len(*in) == 0 || len((*in)[0]) == 0 {
 		return "", errors.New("no first line")
 	}
 
-	parts := utils.Split(in[0])
+	parts := utils.Split((*in)[0])
 
 	if utils.Intersect(parts, DockerPs.Columns()) {
 		return DockerPs, nil
@@ -28,6 +28,11 @@ func ParseCmd(in []string) (Cmd, error) {
 		return DockerComposePs, nil
 	}
 
+	if utils.Intersect(parts, DockerComposePsV1.Columns()) {
+		*in = append((*in)[:1], (*in)[2:]...)
+		return DockerComposePsV1, nil
+	}
+
 	return "", errors.New("invalid first line")
 }
 
@@ -39,7 +44,7 @@ func ParseFirstLine(in string) ([]lines.Column, lines.Values) {
 
 	for i, part := range parts {
 		cols[i] = lines.Column{
-			Name: part,
+			Name: strings.ToUpper(part),
 			Len:  pointer.ToInt(len(part)),
 		}
 

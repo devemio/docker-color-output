@@ -49,6 +49,7 @@ func (*DockerComposePsLineFmt) Ports(v string) string {
 	return strings.Join(ports, ", ")
 }
 
+//nolint:goconst
 func (f *DockerComposePsLineFmt) Format(vals map[string]string, col string) string {
 	v := vals[col]
 	switch col {

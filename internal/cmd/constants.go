@@ -44,6 +44,13 @@ func (c Cmd) Columns() []string {
 			"STATUS",
 			"PORTS", // nullable
 		}
+	case DockerComposePsV1:
+		return []string{
+			"Name",
+			"Command",
+			"State",
+			"Ports", // nullable
+		}
 	default:
 		return nil
 	}
@@ -57,13 +64,16 @@ func (c Cmd) GetFmt() fmt.Formatable {
 		return fmt.NewDockerImagesLineFmt()
 	case DockerComposePs:
 		return fmt.NewDockerComposePsLineFmt()
+	case DockerComposePsV1:
+		return fmt.NewDockerComposePsV1LineFmt()
 	default:
 		return nil
 	}
 }
 
 const (
-	DockerPs        Cmd = "docker ps"
-	DockerImages    Cmd = "docker images"
-	DockerComposePs Cmd = "docker compose ps"
+	DockerPs          Cmd = "docker ps"
+	DockerImages      Cmd = "docker images"
+	DockerComposePs   Cmd = "docker compose ps"
+	DockerComposePsV1 Cmd = "docker-compose ps"
 )

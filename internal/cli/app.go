@@ -7,7 +7,7 @@ import (
 )
 
 func Execute(in []string) ([]*lines.Line, error) {
-	c, err := cmd.ParseCmd(in)
+	c, err := cmd.ParseCmd(&in)
 	if err != nil {
 		return nil, err
 	}

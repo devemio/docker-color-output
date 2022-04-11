@@ -46,6 +46,7 @@ func TestExecute(t *testing.T) {
 		"docker_ps:nullable_cols": {in: "in/docker_ps_nullable_cols.out", wantErr: true},
 		"docker_images":           {in: "in/docker_images.out", want: "out/docker_images.out"},
 		"docker_compose_ps":       {in: "in/docker_compose_ps.out", want: "out/docker_compose_ps.out"},
+		"docker_compose_ps_v1":    {in: "in/docker_compose_ps_v1.out", want: "out/docker_compose_ps_v1.out"},
 	}
 
 	for name, tt := range tests {

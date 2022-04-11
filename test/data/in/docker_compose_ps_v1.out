@@ -1,0 +1,4 @@
+           Name                          Command               State            Ports         
+----------------------------------------------------------------------------------------------
+docker-color-output-home-1    /docker-entrypoint.sh ngin ...   Exit 0                         
+docker-color-output-redis-1   docker-entrypoint.sh redis ...   Up       0.0.0.0:6379->6379/tcp

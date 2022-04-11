@@ -1,0 +1,3 @@
+[1;34mNAME[0m                          [1;34mCOMMAND[0m                          [1;34mSTATE[0m    [1;34mPORTS[0m                    
+[1;30mdocker-color-output-home-1[0m    [1;30m/docker-entrypoint.sh ngin ...[0m   [0;31mExit 0[0m                            
+[1;37mdocker-color-output-redis-1[0m   [1;30mdocker-entrypoint.sh redis ...[0m   [1;32mUp[0m       [1;36m0.0.0.0:6379[0m->6379/tcp   

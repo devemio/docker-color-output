@@ -13,7 +13,7 @@ const (
 )
 
 func Split(v string) []string {
-	return regexp.MustCompile(`\s{2,}`).Split(v, -1)
+	return regexp.MustCompile(`\s{2,}`).Split(strings.TrimSpace(v), -1)
 }
 
 func Pad(value string, length int) string {
