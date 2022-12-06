@@ -2,6 +2,12 @@ package cmd
 
 import "docker-color-output/internal/lines/fmt"
 
+const (
+	DockerPs        Cmd = "docker ps"
+	DockerImages    Cmd = "docker images"
+	DockerComposePs Cmd = "docker compose ps"
+)
+
 type Cmd string
 
 func (c Cmd) String() string {
@@ -49,7 +55,7 @@ func (c Cmd) Columns() []string {
 	}
 }
 
-func (c Cmd) GetFmt() fmt.Formatable {
+func (c Cmd) GetFmt() fmt.Formatable { //nolint:ireturn
 	switch c {
 	case DockerPs:
 		return fmt.NewDockerPsLineFmt()
@@ -61,9 +67,3 @@ func (c Cmd) GetFmt() fmt.Formatable {
 		return nil
 	}
 }
-
-const (
-	DockerPs        Cmd = "docker ps"
-	DockerImages    Cmd = "docker images"
-	DockerComposePs Cmd = "docker compose ps"
-)

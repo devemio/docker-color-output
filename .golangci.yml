@@ -1,35 +1,44 @@
 linters:
-  disable-all: true
   enable:
-    - bodyclose
-    - deadcode
+    - contextcheck
     - depguard
     - dogsled
     - dupl
-    - errcheck
+    - errorlint
+    - exhaustive
+    - exportloopref
+    - forcetypeassert
     - funlen
+    - gochecknoglobals
     - gochecknoinits
+    - gocognit
     - goconst
     - gocritic
     - gocyclo
     - gofmt
+    - gofumpt
     - goimports
+    - goprintffuncname
     - gosec
-    - gosimple
-    - govet
-    - ineffassign
+    - importas
+    - ireturn
     - lll
+    - makezero
     - misspell
     - nakedret
-    - staticcheck
-    - structcheck
+    - nestif
+    - nilerr
+    - nilnil
+    - nolintlint
+    - prealloc
+    - revive
     - stylecheck
-    - typecheck
+    - tparallel
     - unconvert
     - unparam
-    - unused
-    - varcheck
     - whitespace
+    - wsl
 
-output:
-  format: tab
+linters-settings:
+  gofumpt:
+    module-path: docker-color-output

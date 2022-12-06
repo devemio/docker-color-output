@@ -16,15 +16,16 @@ func Get() ([]string, error) {
 		return nil, errors.New("no stdin")
 	}
 
-	var res []string
+	var out []string
+
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		res = append(res, s.Text())
+		out = append(out, s.Text())
 	}
 
-	if err := s.Err(); err != nil {
+	if err = s.Err(); err != nil {
 		return nil, err
 	}
 
-	return res, nil
+	return out, nil
 }

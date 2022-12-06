@@ -21,6 +21,7 @@ func (*DockerPsLineFmt) Image(v string) string {
 	if len(parts) == 2 {
 		return color.Yellow(parts[0]) + color.LightGreen(":"+parts[1])
 	}
+
 	return color.Yellow(v)
 }
 
@@ -32,9 +33,11 @@ func (*DockerPsLineFmt) Created(v string) string {
 	if strings.Contains(v, "months") {
 		return color.Brown(v)
 	}
+
 	if strings.Contains(v, "years") {
 		return color.Red(v)
 	}
+
 	return color.Green(v)
 }
 
@@ -42,18 +45,22 @@ func (*DockerPsLineFmt) Status(v string) string {
 	if strings.Contains(v, "Exited") {
 		return color.Red(v)
 	}
+
 	return color.LightGreen(v)
 }
 
 func (*DockerPsLineFmt) Ports(v string) string {
-	var ports []string
+	ports := make([]string, 0)
+
 	for _, port := range strings.Split(v, ", ") {
 		parts := strings.Split(port, "->")
 		if len(parts) == 2 {
 			port = color.LightCyan(parts[0]) + "->" + parts[1]
 		}
+
 		ports = append(ports, port)
 	}
+
 	return strings.Join(ports, ", ")
 }
 
@@ -63,6 +70,7 @@ func (*DockerPsLineFmt) Names(v string) string {
 
 func (f *DockerPsLineFmt) Format(vals map[string]string, col string) string {
 	v := vals[col]
+
 	switch col {
 	case "CONTAINER ID":
 		return f.ContainerID(v)

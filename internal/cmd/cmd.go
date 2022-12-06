@@ -88,13 +88,12 @@ func ParseLines(ins []string, cols []lines.Column) ([]lines.Values, error) {
 	return rows, nil
 }
 
-func calculateNullableCols(cols []lines.Column) byte {
-	var total byte = 0
+func calculateNullableCols(cols []lines.Column) (total byte) {
 	for _, col := range cols {
 		if col.IsNullable() {
 			total++
 		}
 	}
 
-	return total
+	return
 }

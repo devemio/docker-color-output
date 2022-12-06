@@ -18,9 +18,11 @@ func TestExecute(t *testing.T) {
 		bytes, _ := os.ReadFile(path + "/../../test/data/" + filename)
 		vals := strings.Split(string(bytes), "\n")
 		vals = vals[:len(vals)-1]
+
 		if len(vals) == 0 {
 			return nil
 		}
+
 		return vals
 	}
 
@@ -29,6 +31,7 @@ func TestExecute(t *testing.T) {
 		for _, v := range in {
 			vals = append(vals, v.Build())
 		}
+
 		return vals
 	}
 

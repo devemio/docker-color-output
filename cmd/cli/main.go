@@ -14,12 +14,12 @@ func main() {
 		cli.Exit(err)
 	}
 
-	vals, err := cli.Execute(in)
+	out, err := cli.Execute(in)
 	if err != nil {
 		cli.Exit(err)
 	}
 
-	for _, v := range vals {
+	for _, v := range out {
 		stdout.Println(v)
 	}
 }
