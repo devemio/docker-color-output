@@ -3,7 +3,7 @@
 </p>
 
 <p align="center">
-  <a href="https://github.com/devemio/docker-color-output/actions/workflows/go.yml"><img src="https://img.shields.io/github/workflow/status/devemio/docker-color-output/Go"></a>
+  <a href="https://github.com/devemio/docker-color-output/actions/workflows/go.yml"><img src="https://img.shields.io/github/actions/workflow/status/devemio/docker-color-output/go.yml?branch=main"></a>
   <a href="https://codecov.io/gh/devemio/docker-color-output"><img src="https://img.shields.io/codecov/c/gh/devemio/docker-color-output" alt="Coverage"></a>
   <a href="https://github.com/devemio/docker-color-output/releases"><img src="https://img.shields.io/github/downloads/devemio/docker-color-output/total?color=brightgreen" alt="Downloads"></a>
   <a href="https://github.com/devemio/docker-color-output/releases"><img src="https://img.shields.io/github/v/release/devemio/docker-color-output" alt="Release"></a>
