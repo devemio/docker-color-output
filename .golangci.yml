@@ -1,44 +1,10 @@
 linters:
-  enable:
-    - contextcheck
-    - depguard
-    - dogsled
-    - dupl
-    - errorlint
-    - exhaustive
-    - exportloopref
-    - forcetypeassert
-    - funlen
-    - gochecknoglobals
-    - gochecknoinits
-    - gocognit
-    - goconst
-    - gocritic
-    - gocyclo
-    - gofmt
-    - gofumpt
-    - goimports
-    - goprintffuncname
-    - gosec
-    - importas
-    - ireturn
-    - lll
-    - makezero
-    - misspell
-    - nakedret
-    - nestif
-    - nilerr
-    - nilnil
-    - nolintlint
-    - prealloc
-    - revive
-    - stylecheck
-    - tparallel
-    - unconvert
-    - unparam
-    - whitespace
-    - wsl
+  enable-all: true
 
 linters-settings:
   gofumpt:
     module-path: docker-color-output
+  varnamelen:
+    ignore-names: [ i, in, j, m, sb, tt, v ]
+  wrapcheck:
+    ignorePackageGlobs: [ docker-color-output/internal/* ]

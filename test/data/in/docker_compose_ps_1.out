@@ -1,0 +1,4 @@
+NAME                IMAGE                               COMMAND                  SERVICE             CREATED              STATUS              PORTS
+m-grafana           grafana/grafana-enterprise:latest   "/run.sh"                grafana             About a minute ago   Up About a minute   127.0.0.1:3001->3000/tcp
+m-node-exporter     prom/node-exporter:latest           "/bin/node_exporter …"   node-exporter       About a minute ago   Up About a minute   9100/tcp
+m-prometheus        prom/prometheus:latest              "/bin/prometheus --c…"   prometheus          About a minute ago   Up About a minute   9090/tcp

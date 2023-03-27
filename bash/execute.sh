@@ -1,8 +1,7 @@
 #!/usr/bin/env bash
 
 # Usage:
-#  alias docker='bash decorator.sh docker'
-#  alias docker-compose='bash decorator.sh docker-compose'
+#  alias docker='bash execute.sh docker'
 if [[ "$1" == "docker" ]]; then
   if [[ "$2" == "ps" || "$2" == "images" ]]; then
     "$@" | docker-color-output
@@ -11,8 +10,6 @@ if [[ "$1" == "docker" ]]; then
   else
     "$@"
   fi
-elif [[ "$1" == "docker-compose" && "$2" == "ps" ]]; then
-  "$@" | docker-color-output
 else
   "$@"
 fi

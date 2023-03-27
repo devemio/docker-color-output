@@ -2,10 +2,8 @@ package stdout
 
 import (
 	"fmt"
-
-	"docker-color-output/internal/lines"
 )
 
-func Println(v lines.Buildable) {
-	fmt.Println(v.Build())
+func Println(in string) {
+	fmt.Println(in) //nolint:forbidigo
 }

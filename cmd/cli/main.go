@@ -3,23 +3,34 @@
 package main
 
 import (
-	"docker-color-output/internal/cli"
+	"os"
+
+	"docker-color-output/internal/app"
 	"docker-color-output/internal/stdin"
 	"docker-color-output/internal/stdout"
 )
 
 func main() {
+	if err := run(); err != nil {
+		app.Usage(err)
+		os.Exit(1)
+	}
+}
+
+func run() error {
 	in, err := stdin.Get()
 	if err != nil {
-		cli.Exit(err)
+		return err
 	}
 
-	out, err := cli.Execute(in)
+	rows, err := app.Run(in)
 	if err != nil {
-		cli.Exit(err)
+		return err
 	}
 
-	for _, v := range out {
-		stdout.Println(v)
+	for _, row := range rows {
+		stdout.Println(row)
 	}
+
+	return nil
 }

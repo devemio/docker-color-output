@@ -1,4 +1,4 @@
-package utils
+package util
 
 import (
 	"fmt"
@@ -12,8 +12,8 @@ const (
 	NonPrintableCharactersLength = 11
 )
 
-func Split(v string) []string {
-	return regexp.MustCompile(`\s{2,}`).Split(v, -1)
+func Split(in string) []string {
+	return regexp.MustCompile(`\s{2,}`).Split(in, -1)
 }
 
 func Pad(value string, length int) string {

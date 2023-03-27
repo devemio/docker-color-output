@@ -1,0 +1,4 @@
+[1;34mNAME[0m              [1;34mIMAGE[0m                               [1;34mCOMMAND[0m                  [1;34mSERVICE[0m         [1;34mCREATED[0m              [1;34mSTATUS[0m              [1;34mPORTS[0m                      
+[1;37mm-grafana[0m         [1;33mgrafana/grafana-enterprise[0m[1;32m:latest[0m   [1;30m"/run.sh"[0m                [1;33mgrafana[0m         [0;32mAbout a minute ago[0m   [1;32mUp About a minute[0m   [1;36m127.0.0.1:3001[0m->3000/tcp   
+[1;37mm-node-exporter[0m   [1;33mprom/node-exporter[0m[1;32m:latest[0m           [1;30m"/bin/node_exporter …"[0m   [1;33mnode-exporter[0m   [0;32mAbout a minute ago[0m   [1;32mUp About a minute[0m   9100/tcp                   
+[1;37mm-prometheus[0m      [1;33mprom/prometheus[0m[1;32m:latest[0m              [1;30m"/bin/prometheus --c…"[0m   [1;33mprometheus[0m      [0;32mAbout a minute ago[0m   [1;32mUp About a minute[0m   9090/tcp                   

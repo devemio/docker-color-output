@@ -1,12 +1,15 @@
-package numbers
+package number_test
 
 import (
 	"testing"
 
-	"docker-color-output/pkg/utils/assert"
+	"docker-color-output/pkg/util/assert"
+	"docker-color-output/pkg/util/number"
 )
 
 func TestParseFloat(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
 		in   string
 		want float64
@@ -20,8 +23,11 @@ func TestParseFloat(t *testing.T) {
 	}
 
 	for name, tt := range tests {
+		tt := tt
+
 		t.Run(name, func(t *testing.T) {
-			assert.Equal(t, tt.want, ParseFloat(tt.in))
+			t.Parallel()
+			assert.Equal(t, tt.want, number.ParseFloat(tt.in))
 		})
 	}
 }

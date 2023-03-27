@@ -1,13 +1,16 @@
-package utils
+package util_test
 
 import (
 	"testing"
 
+	"docker-color-output/internal/util"
 	"docker-color-output/pkg/color"
-	"docker-color-output/pkg/utils/assert"
+	"docker-color-output/pkg/util/assert"
 )
 
 func TestSplit(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
 		in   string
 		want []string
@@ -19,13 +22,18 @@ func TestSplit(t *testing.T) {
 	}
 
 	for name, tt := range tests {
+		tt := tt
+
 		t.Run(name, func(t *testing.T) {
-			assert.Equal(t, tt.want, Split(tt.in))
+			t.Parallel()
+			assert.Equal(t, tt.want, util.Split(tt.in))
 		})
 	}
 }
 
 func TestPad(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
 		value  string
 		length int
@@ -44,13 +52,18 @@ func TestPad(t *testing.T) {
 	}
 
 	for name, tt := range tests {
+		tt := tt
+
 		t.Run(name, func(t *testing.T) {
-			assert.Equal(t, tt.want, Pad(tt.value, tt.length))
+			t.Parallel()
+			assert.Equal(t, tt.want, util.Pad(tt.value, tt.length))
 		})
 	}
 }
 
 func TestIntersect(t *testing.T) {
+	t.Parallel()
+
 	tests := map[string]struct {
 		needle   []string
 		haystack []string
@@ -63,8 +76,11 @@ func TestIntersect(t *testing.T) {
 	}
 
 	for name, tt := range tests {
+		tt := tt
+
 		t.Run(name, func(t *testing.T) {
-			assert.Equal(t, tt.want, Intersect(tt.needle, tt.haystack))
+			t.Parallel()
+			assert.Equal(t, tt.want, util.Intersect(tt.needle, tt.haystack))
 		})
 	}
 }

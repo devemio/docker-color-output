@@ -6,26 +6,28 @@ import (
 	"os"
 )
 
+var ErrNoStdin = errors.New("no stdin")
+
 func Get() ([]string, error) {
 	fi, err := os.Stdin.Stat()
 	if err != nil {
-		return nil, err
+		return nil, err //nolint:wrapcheck
 	}
 
 	if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
-		return nil, errors.New("no stdin")
+		return nil, ErrNoStdin
 	}
 
-	var out []string
+	var res []string
 
 	s := bufio.NewScanner(os.Stdin)
 	for s.Scan() {
-		out = append(out, s.Text())
+		res = append(res, s.Text())
 	}
 
 	if err = s.Err(); err != nil {
-		return nil, err
+		return nil, err //nolint:wrapcheck
 	}
 
-	return out, nil
+	return res, nil
 }
