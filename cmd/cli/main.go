@@ -3,11 +3,14 @@
 package main
 
 import (
+	"fmt"
 	"os"
 
 	"github.com/devemio/docker-color-output/internal/app"
+	"github.com/devemio/docker-color-output/internal/config"
 	"github.com/devemio/docker-color-output/internal/stdin"
 	"github.com/devemio/docker-color-output/internal/stdout"
+	"github.com/devemio/docker-color-output/pkg/color"
 )
 
 func main() {
@@ -18,6 +21,13 @@ func main() {
 }
 
 func run() error {
+	cfg, err := config.Get()
+	if err != nil {
+		return fmt.Errorf("cfg: %w", err)
+	}
+
+	color.SetPalette(color.Palette(cfg.Colors))
+
 	in, err := stdin.Get()
 	if err != nil {
 		return err //nolint:wrapcheck
