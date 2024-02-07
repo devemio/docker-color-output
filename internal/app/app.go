@@ -4,10 +4,10 @@ import (
 	"errors"
 	"strings"
 
-	"docker-color-output/internal/cmd"
-	"docker-color-output/internal/layout"
-	"docker-color-output/internal/util"
-	"docker-color-output/pkg/color"
+	"github.com/devemio/docker-color-output/internal/cmd"
+	"github.com/devemio/docker-color-output/internal/layout"
+	"github.com/devemio/docker-color-output/internal/util"
+	"github.com/devemio/docker-color-output/pkg/color"
 )
 
 var (
@@ -29,7 +29,7 @@ func Run(in []string) ([]string, error) {
 
 	command, err := cmd.Parse(header)
 	if err != nil {
-		return nil, err
+		return nil, err //nolint:wrapcheck
 	}
 
 	res := make([]string, len(in))

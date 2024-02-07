@@ -1,18 +1,19 @@
-.PHONY: build test clean lint
-.SILENT: build test clean lint
-
 BIN=$(CURDIR)/bin
 GO=$(shell which go)
 APP=docker-color-output
 
+.PHONY: build
 build:
-	$(GO) build -o $(BIN)/$(APP) ./cmd/cli
+	@$(GO) build -o $(BIN)/$(APP) ./cmd/cli
 
+.PHONY: test
 test:
-	go test ./...
+	@go test ./...
 
+.PHONY: clean
 clean:
-	rm -f $(BIN)/$(APP)*
+	@rm -f $(BIN)/$(APP)*
 
+.PHONY: lint
 lint:
-	docker run --rm -w /opt -v $(shell pwd):/opt golangci/golangci-lint golangci-lint run
+	@golangci-lint run -v --fix

@@ -3,9 +3,9 @@ package cmd
 import (
 	"strings"
 
-	"docker-color-output/internal/layout"
-	"docker-color-output/pkg/color"
-	"docker-color-output/pkg/util/number"
+	"github.com/devemio/docker-color-output/internal/layout"
+	"github.com/devemio/docker-color-output/pkg/color"
+	"github.com/devemio/docker-color-output/pkg/util/number"
 )
 
 const (

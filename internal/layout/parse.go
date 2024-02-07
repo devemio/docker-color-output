@@ -3,7 +3,7 @@ package layout
 import (
 	"strings"
 
-	"docker-color-output/internal/util"
+	"github.com/devemio/docker-color-output/internal/util"
 )
 
 func ParseHeader(rows []string) Header {

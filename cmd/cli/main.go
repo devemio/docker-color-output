@@ -5,9 +5,9 @@ package main
 import (
 	"os"
 
-	"docker-color-output/internal/app"
-	"docker-color-output/internal/stdin"
-	"docker-color-output/internal/stdout"
+	"github.com/devemio/docker-color-output/internal/app"
+	"github.com/devemio/docker-color-output/internal/stdin"
+	"github.com/devemio/docker-color-output/internal/stdout"
 )
 
 func main() {
@@ -20,12 +20,12 @@ func main() {
 func run() error {
 	in, err := stdin.Get()
 	if err != nil {
-		return err
+		return err //nolint:wrapcheck
 	}
 
 	rows, err := app.Run(in)
 	if err != nil {
-		return err
+		return err //nolint:wrapcheck
 	}
 
 	for _, row := range rows {

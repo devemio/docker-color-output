@@ -7,8 +7,8 @@ import (
 	"strings"
 	"testing"
 
-	"docker-color-output/internal/app"
-	"docker-color-output/pkg/util/assert"
+	"github.com/devemio/docker-color-output/internal/app"
+	"github.com/devemio/docker-color-output/pkg/util/assert"
 )
 
 func TestRun(t *testing.T) {
@@ -28,6 +28,7 @@ func TestRun(t *testing.T) {
 		return res
 	}
 
+	//nolint:exhaustruct
 	tests := map[string]struct {
 		in      string
 		want    string
@@ -50,6 +51,7 @@ func TestRun(t *testing.T) {
 
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
+
 			rows, err := app.Run(read("in/" + tt.in))
 			assert.Equal(t, tt.wantErr, err != nil)
 			assert.Equal(t, read("out/"+tt.want), rows)

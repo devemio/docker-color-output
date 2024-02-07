@@ -3,11 +3,11 @@ package color_test
 import (
 	"testing"
 
-	"docker-color-output/pkg/color"
-	"docker-color-output/pkg/util/assert"
+	"github.com/devemio/docker-color-output/pkg/color"
+	"github.com/devemio/docker-color-output/pkg/util/assert"
 )
 
-//nolint:funlen
+//nolint:funlen,goconst
 func TestColors(t *testing.T) {
 	t.Parallel()
 

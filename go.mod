@@ -1,3 +1,3 @@
-module docker-color-output
+module github.com/devemio/docker-color-output
 
-go 1.20
+go 1.21

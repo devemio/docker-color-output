@@ -3,8 +3,8 @@ package cmd
 import (
 	"strings"
 
-	"docker-color-output/internal/layout"
-	"docker-color-output/pkg/color"
+	"github.com/devemio/docker-color-output/internal/layout"
+	"github.com/devemio/docker-color-output/pkg/color"
 )
 
 const (

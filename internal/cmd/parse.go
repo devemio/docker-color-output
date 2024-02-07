@@ -3,8 +3,8 @@ package cmd
 import (
 	"errors"
 
-	"docker-color-output/internal/layout"
-	"docker-color-output/internal/util"
+	"github.com/devemio/docker-color-output/internal/layout"
+	"github.com/devemio/docker-color-output/internal/util"
 )
 
 var ErrInvalidFirstLine = errors.New("invalid first line")

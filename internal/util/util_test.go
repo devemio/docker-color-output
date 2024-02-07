@@ -3,9 +3,9 @@ package util_test
 import (
 	"testing"
 
-	"docker-color-output/internal/util"
-	"docker-color-output/pkg/color"
-	"docker-color-output/pkg/util/assert"
+	"github.com/devemio/docker-color-output/internal/util"
+	"github.com/devemio/docker-color-output/pkg/color"
+	"github.com/devemio/docker-color-output/pkg/util/assert"
 )
 
 func TestSplit(t *testing.T) {
