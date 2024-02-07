@@ -13,7 +13,8 @@
 
 ## 👨‍💻 Installation
 
-This package uses a pipeline and allows you to color the Docker output.
+This package uses a pipeline and allows you to color the **Docker** output.  
+You can find all compiled binaries on the [releases](https://github.com/devemio/docker-color-output/releases) page.
 
 #### 🍏 Mac
 
@@ -33,13 +34,13 @@ sudo apt install docker-color-output
 
 You can download the Windows build from the [releases](https://github.com/devemio/docker-color-output/releases) page.
 
-#### 🪄 Aliases
+## 📚 Usage
+
+### 🪄 Aliases
 
 Use these bash [functions](bash/aliases.sh) to improve the user experience.
 
-## 📚 Usage
-
-#### 💡 docker images
+### 💡 docker images
 
 ```bash
 di # alias
