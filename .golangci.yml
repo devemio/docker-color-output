@@ -8,7 +8,7 @@ linters-settings:
       - default
       - prefix(github.com/devemio/docker-color-output)
   varnamelen:
-    ignore-names: [ i, in, j, m, sb, tt, v ]
+    ignore-names: [ fn, i, in, j, m, sb, tt, v ]
   depguard:
     rules:
       main:

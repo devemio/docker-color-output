@@ -2,32 +2,58 @@ package stdin
 
 import (
 	"bufio"
+	"bytes"
 	"errors"
+	"fmt"
 	"os"
+
+	"github.com/devemio/docker-color-output/internal/stdout"
 )
 
-var ErrNoStdin = errors.New("no stdin")
+var ErrEmpty = errors.New("empty")
 
-func Get() ([]string, error) {
+const rowsCap = 20
+
+// clsBytes contains bytes to clear
+// the screen for nix systems.
+var clsBytes = []byte("\033[2J\033[H") //nolint:gochecknoglobals
+
+func Get(fn func(rows []string) error) error {
 	fi, err := os.Stdin.Stat()
 	if err != nil {
-		return nil, err //nolint:wrapcheck
+		return fmt.Errorf("stdin: %w", err)
 	}
 
 	if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
-		return nil, ErrNoStdin
+		return fmt.Errorf("stdin: %w", ErrEmpty)
 	}
 
-	var res []string
+	rows := make([]string, 0, rowsCap)
 
-	s := bufio.NewScanner(os.Stdin)
-	for s.Scan() {
-		res = append(res, s.Text())
+	scanner := bufio.NewScanner(os.Stdin)
+	for scanner.Scan() {
+		row, found := scanner.Bytes(), false //nolint:wastedassign
+
+		if row, found = bytes.CutPrefix(row, clsBytes); found && len(rows) > 0 {
+			stdout.Print(string(clsBytes))
+
+			if err = fn(rows); err != nil {
+				return err
+			}
+
+			rows = rows[:0]
+		}
+
+		rows = append(rows, string(row))
 	}
 
-	if err = s.Err(); err != nil {
-		return nil, err //nolint:wrapcheck
+	if err = scanner.Err(); err != nil {
+		return fmt.Errorf("stdin: scan: %w", err)
 	}
 
-	return res, nil
+	if err = fn(rows); err != nil {
+		return err
+	}
+
+	return nil
 }

@@ -2,6 +2,7 @@ package app
 
 import (
 	"errors"
+	"fmt"
 	"strings"
 
 	"github.com/devemio/docker-color-output/internal/cmd"
@@ -29,7 +30,7 @@ func Run(in []string) ([]string, error) {
 
 	command, err := cmd.Parse(header)
 	if err != nil {
-		return nil, err //nolint:wrapcheck
+		return nil, fmt.Errorf("cmd: parse: %w", err)
 	}
 
 	res := make([]string, len(in))

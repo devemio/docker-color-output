@@ -11,3 +11,7 @@ dps() {
 dcps() {
   docker compose ps "$@" | docker-color-output
 }
+
+ds() {
+  docker stats "$@" | docker-color-output
+}

@@ -1,0 +1,2 @@
+[1;34mCONTAINER ID[0m   [1;34mNAME[0m    [1;34mCPU %[0m    [1;34mMEM USAGE / LIMIT[0m     [1;34mMEM %[0m    [1;34mNET I/O[0m           [1;34mBLOCK I/O[0m     [1;34mPIDS[0m   
+[1;30me39ba801c0e1[0m   [1;37mnginx[0m   [0;31m90.00%[0m   13.53MiB [1;30m/ 7.657GiB[0m   [0;33m50.17%[0m   10.8MB [1;30m/[0m[0;31m 42.1GB[0m   0B [1;30m/[0m 12.3kB   [1;36m17[0m     

@@ -3,19 +3,18 @@
 package app
 
 import (
-	"fmt"
-
+	"github.com/devemio/docker-color-output/internal/stdout"
 	"github.com/devemio/docker-color-output/pkg/color"
 )
 
 const indent = "    "
 
-//nolint:forbidigo
 func Usage(err error) {
-	fmt.Println(color.LightRed("💡 Error: " + err.Error()))
-	fmt.Println("💥 Version: " + color.Green(Ver))
-	fmt.Println("👌 Usage:")
-	fmt.Println(indent + color.Green("docker compose ps") + " [-a] | " + color.Brown(Name))
-	fmt.Println(indent + color.Green("docker images") + " [--format] | " + color.Brown(Name))
-	fmt.Println(indent + color.Green("docker ps") + " [-a] [--format] | " + color.Brown(Name))
+	stdout.Println(color.LightRed("💡 Error: " + err.Error()))
+	stdout.Println("💥 Version: " + color.Green(Ver))
+	stdout.Println("👌 Usage:")
+	stdout.Println(indent + color.Green("docker compose ps") + " [-a] | " + color.Brown(Name))
+	stdout.Println(indent + color.Green("docker images") + " [--format] | " + color.Brown(Name))
+	stdout.Println(indent + color.Green("docker ps") + " [-a] [--format] | " + color.Brown(Name))
+	stdout.Println(indent + color.Green("docker stats") + " [--no-stream] | " + color.Brown(Name))
 }
