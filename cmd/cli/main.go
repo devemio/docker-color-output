@@ -28,19 +28,16 @@ func run() error {
 
 	color.SetPalette(color.Palette(cfg.Colors))
 
-	in, err := stdin.Get()
-	if err != nil {
-		return err //nolint:wrapcheck
-	}
+	return stdin.Get(func(rows []string) error { //nolint:wrapcheck
+		rows, err = app.Run(rows)
+		if err != nil {
+			return fmt.Errorf("app: %w", err)
+		}
 
-	rows, err := app.Run(in)
-	if err != nil {
-		return err //nolint:wrapcheck
-	}
+		for _, row := range rows {
+			stdout.Println(row)
+		}
 
-	for _, row := range rows {
-		stdout.Println(row)
-	}
-
-	return nil
+		return nil
+	})
 }

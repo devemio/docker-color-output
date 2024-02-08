@@ -30,5 +30,10 @@ func Parse(header layout.Header) (Command, error) { //nolint:ireturn
 		return composePs, nil
 	}
 
+	stats := &DockerStats{}
+	if util.Intersect(columns, stats.Columns()) {
+		return stats, nil
+	}
+
 	return nil, ErrInvalidFirstLine
 }

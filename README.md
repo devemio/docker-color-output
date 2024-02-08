@@ -116,3 +116,15 @@ docker compose ps | docker-color-output
 ```
 
 ![docker compose ps](https://user-images.githubusercontent.com/5787193/93630916-7267dd00-f9f3-11ea-9521-e69152fa86f1.png)
+
+#### 💡 docker stats
+
+```bash
+ds # alias
+```
+
+```bash
+docker stats [--no-stream] | docker-color-output
+```
+
+![docker stats](https://github.com/devemio/docker-color-output/assets/5787193/a3134ae9-707b-4ad7-a5ea-765150d535e8)

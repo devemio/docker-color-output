@@ -44,6 +44,7 @@ func TestRun(t *testing.T) {
 		"docker_images":           {in: "docker_images.out", want: "docker_images.out"},
 		"docker_compose_ps":       {in: "docker_compose_ps.out", want: "docker_compose_ps.out"},
 		"docker_compose_ps_1":     {in: "docker_compose_ps_1.out", want: "docker_compose_ps_1.out"},
+		"docker_stats":            {in: "docker_stats.out", want: "docker_stats.out"},
 	}
 
 	for name, tt := range tests {

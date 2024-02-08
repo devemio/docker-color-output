@@ -40,7 +40,7 @@ func Get() (Config, error) {
 	if *cfgPath != "" {
 		data, err := os.ReadFile(*cfgPath)
 		if err != nil {
-			return Config{}, fmt.Errorf("read file: %w", err)
+			return Config{}, fmt.Errorf("read: %w", err)
 		}
 
 		if err = json.Unmarshal(data, &cfg); err != nil {
