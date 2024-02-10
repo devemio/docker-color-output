@@ -5,6 +5,8 @@ import (
 	"flag"
 	"fmt"
 	"os"
+
+	"github.com/devemio/docker-color-output/internal/app"
 )
 
 type Config struct {
@@ -34,7 +36,11 @@ type Colors struct {
 func Get() (Config, error) {
 	cfg := createDefault()
 
-	cfgPath := flag.String("c", "", "Config location")
+	flag.Usage = func() {
+		app.Usage(nil)
+	}
+
+	cfgPath := flag.String("c", "", "Path to configuration file")
 	flag.Parse()
 
 	if *cfgPath != "" {
