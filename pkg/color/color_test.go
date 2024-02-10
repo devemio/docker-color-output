@@ -93,3 +93,27 @@ func TestColors(t *testing.T) {
 		assert.Equal(t, "\u001B[1;37m"+msg+"\u001B[0m", color.White(msg))
 	})
 }
+
+func TestSetPalette(t *testing.T) {
+	t.Parallel()
+
+	color.SetPalette(color.Palette{
+		Reset:       "\u001B[0m",
+		Black:       "\u001B[0;30m",
+		DarkGray:    "\u001B[1;30m",
+		Red:         "\u001B[0;31m",
+		LightRed:    "\u001B[1;31m",
+		Green:       "\u001B[0;32m",
+		LightGreen:  "\u001B[1;32m",
+		Brown:       "\u001B[0;33m",
+		Yellow:      "\u001B[1;33m",
+		Blue:        "\u001B[0;34m",
+		LightBlue:   "\u001B[1;34m",
+		Purple:      "\u001B[0;35m",
+		LightPurple: "\u001B[1;35m",
+		Cyan:        "\u001B[0;36m",
+		LightCyan:   "\u001B[1;36m",
+		LightGray:   "\u001B[0;37m",
+		White:       "\u001B[1;37m",
+	})
+}
