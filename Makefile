@@ -4,14 +4,14 @@ APP=docker-color-output
 
 .PHONY: build
 build:
-	@$(GO) build -o $(BIN)/$(APP) ./cmd/cli
+	@CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o $(BIN)/$(APP) ./cmd/cli
 
 .PHONY: publish
 publish: clean
-	@GOOS=darwin GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-darwin-amd64 ./cmd/cli && \
-		GOOS=linux GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-linux-amd64 ./cmd/cli && \
-		GOOS=windows GOARCH=amd64 $(GO) build -o $(BIN)/$(APP)-windows-amd64.exe ./cmd/cli && \
-		mv ./bin/* ~/Downloads
+	GOOS=darwin GOARCH=amd64 CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o $(BIN)/$(APP)-darwin-amd64 ./cmd/cli
+	GOOS=linux GOARCH=amd64 CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o $(BIN)/$(APP)-linux-amd64 ./cmd/cli
+	GOOS=windows GOARCH=amd64 CGO_ENABLED=0 $(GO) build -ldflags="-s -w" -o $(BIN)/$(APP)-windows-amd64.exe ./cmd/cli
+	mv ./bin/* ~/Downloads
 
 .PHONY: test
 test:
