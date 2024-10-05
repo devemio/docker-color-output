@@ -22,8 +22,6 @@ func TestSplit(t *testing.T) {
 	}
 
 	for name, tt := range tests {
-		tt := tt
-
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			assert.Equal(t, tt.want, util.Split(tt.in))
@@ -52,8 +50,6 @@ func TestPad(t *testing.T) {
 	}
 
 	for name, tt := range tests {
-		tt := tt
-
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			assert.Equal(t, tt.want, util.Pad(tt.value, tt.length))
@@ -76,8 +72,6 @@ func TestIntersect(t *testing.T) {
 	}
 
 	for name, tt := range tests {
-		tt := tt
-
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 			assert.Equal(t, tt.want, util.Intersect(tt.needle, tt.haystack))

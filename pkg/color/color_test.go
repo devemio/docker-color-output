@@ -7,7 +7,6 @@ import (
 	"github.com/devemio/docker-color-output/pkg/util/assert"
 )
 
-//nolint:funlen,goconst
 func TestColors(t *testing.T) {
 	t.Parallel()
 

@@ -44,69 +44,69 @@ func (c *DockerPs) Columns() []string {
 }
 
 func (c *DockerPs) Format(rows layout.Row, col layout.Column) string {
-	v := string(rows[col])
+	x := string(rows[col])
 
 	switch col {
 	case DockerPsContainerID:
-		return c.ContainerID(v)
+		return c.ContainerID(x)
 	case DockerPsImage:
-		return c.Image(v)
+		return c.Image(x)
 	case DockerPsCommand:
-		return c.Command(v)
+		return c.Command(x)
 	case DockerPsCreated:
-		return c.Created(v)
+		return c.Created(x)
 	case DockerPsStatus:
-		return c.Status(v)
+		return c.Status(x)
 	case DockerPsPorts:
-		return c.Ports(v)
+		return c.Ports(x)
 	case DockerPsNames:
-		return c.Names(v)
+		return c.Names(x)
 	default:
-		return v
+		return x
 	}
 }
 
-func (*DockerPs) ContainerID(v string) string {
-	return color.DarkGray(v)
+func (*DockerPs) ContainerID(x string) string {
+	return color.DarkGray(x)
 }
 
-func (*DockerPs) Image(v string) string {
-	parts := strings.Split(v, ":") //nolint:ifshort
+func (*DockerPs) Image(x string) string {
+	parts := strings.Split(x, ":") //nolint:ifshort
 	if len(parts) == ValidTotalParts {
 		return color.Yellow(parts[0]) + color.LightGreen(":"+parts[1])
 	}
 
-	return color.Yellow(v)
+	return color.Yellow(x)
 }
 
-func (*DockerPs) Command(v string) string {
-	return color.DarkGray(v)
+func (*DockerPs) Command(x string) string {
+	return color.DarkGray(x)
 }
 
-func (*DockerPs) Created(v string) string {
-	if strings.Contains(v, "months") {
-		return color.Brown(v)
+func (*DockerPs) Created(x string) string {
+	if strings.Contains(x, "months") {
+		return color.Brown(x)
 	}
 
-	if strings.Contains(v, "years") {
-		return color.Red(v)
+	if strings.Contains(x, "years") {
+		return color.Red(x)
 	}
 
-	return color.Green(v)
+	return color.Green(x)
 }
 
-func (*DockerPs) Status(v string) string {
-	if strings.Contains(v, "Exited") {
-		return color.Red(v)
+func (*DockerPs) Status(x string) string {
+	if strings.Contains(x, "Exited") {
+		return color.Red(x)
 	}
 
-	return color.LightGreen(v)
+	return color.LightGreen(x)
 }
 
-func (*DockerPs) Ports(v string) string {
+func (*DockerPs) Ports(x string) string {
 	ports := make([]string, 0)
 
-	for _, port := range strings.Split(v, ", ") {
+	for _, port := range strings.Split(x, ", ") {
 		parts := strings.Split(port, "->")
 		if len(parts) == ValidTotalParts {
 			port = color.LightCyan(parts[0]) + "->" + parts[1]
@@ -118,6 +118,6 @@ func (*DockerPs) Ports(v string) string {
 	return strings.Join(ports, ", ")
 }
 
-func (*DockerPs) Names(v string) string {
-	return color.White(v)
+func (*DockerPs) Names(x string) string {
+	return color.White(x)
 }

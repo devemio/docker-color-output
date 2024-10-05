@@ -1,5 +1,7 @@
 linters:
   enable-all: true
+  disable:
+    - depguard
 
 linters-settings:
   gci:
@@ -8,10 +10,13 @@ linters-settings:
       - default
       - prefix(github.com/devemio/docker-color-output)
   varnamelen:
-    ignore-names: [ fn, i, in, j, m, sb, tt, v ]
-  depguard:
-    rules:
-      main:
-        allow:
-          - $gostd # matches all of go's standard library
-          - github.com/devemio/docker-color-output
+    ignore-names:
+      - i, j, fn, in, tt
+      - x, sb
+
+issues:
+  exclude-rules:
+    - path: '(.+)_test\.go'
+      linters:
+        - funlen
+        - exhaustruct

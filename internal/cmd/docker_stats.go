@@ -49,72 +49,72 @@ func (c *DockerStats) Columns() []string {
 }
 
 func (c *DockerStats) Format(rows layout.Row, col layout.Column) string {
-	v := string(rows[col])
+	x := string(rows[col])
 
 	switch col {
 	case DockerStatsContainerID:
-		return c.ContainerID(v)
+		return c.ContainerID(x)
 	case DockerStatsName:
-		return c.Name(v)
+		return c.Name(x)
 	case DockerStatsCPUPercent:
-		return c.CPUPercent(v)
+		return c.CPUPercent(x)
 	case DockerStatsMemUsage:
-		return c.MemUsage(v)
+		return c.MemUsage(x)
 	case DockerStatsMemPercent:
-		return c.MemPercent(v)
+		return c.MemPercent(x)
 	case DockerStatsNetIO:
-		return c.NetIO(v)
+		return c.NetIO(x)
 	case DockerStatsBlockIO:
-		return c.BlockIO(v)
+		return c.BlockIO(x)
 	case DockerStatsPIDs:
-		return c.PIDs(v)
+		return c.PIDs(x)
 	default:
-		return v
+		return x
 	}
 }
 
-func (*DockerStats) ContainerID(v string) string {
-	return color.DarkGray(v)
+func (*DockerStats) ContainerID(x string) string {
+	return color.DarkGray(x)
 }
 
-func (c *DockerStats) Name(v string) string {
-	return color.White(v)
+func (c *DockerStats) Name(x string) string {
+	return color.White(x)
 }
 
-func (c *DockerStats) CPUPercent(v string) string {
-	percent := number.ParseFloat(v)
+func (c *DockerStats) CPUPercent(x string) string {
+	percent := number.ParseFloat(x)
 
 	switch {
 	case percent >= cpuPercentThresholdHigh:
-		return color.Red(v)
+		return color.Red(x)
 	case percent >= cpuPercentThresholdMedium:
-		return color.Brown(v)
+		return color.Brown(x)
 	default:
-		return v
+		return x
 	}
 }
 
-func (c *DockerStats) MemUsage(v string) string {
-	parts := strings.Split(v, "/")
+func (c *DockerStats) MemUsage(x string) string {
+	parts := strings.Split(x, "/")
 
 	return parts[0] + color.DarkGray("/"+parts[1])
 }
 
-func (c *DockerStats) MemPercent(v string) string {
-	percent := number.ParseFloat(v)
+func (c *DockerStats) MemPercent(x string) string {
+	percent := number.ParseFloat(x)
 
 	switch {
 	case percent >= memPercentThresholdHigh:
-		return color.Red(v)
+		return color.Red(x)
 	case percent >= memPercentThresholdMedium:
-		return color.Brown(v)
+		return color.Brown(x)
 	default:
-		return v
+		return x
 	}
 }
 
-func (*DockerStats) NetIO(v string) string {
-	parts := strings.Split(v, "/")
+func (*DockerStats) NetIO(x string) string {
+	parts := strings.Split(x, "/")
 
 	for i := range parts {
 		if strings.Contains(parts[i], "GB") {
@@ -129,8 +129,8 @@ func (*DockerStats) NetIO(v string) string {
 	return parts[0] + color.DarkGray("/") + parts[1]
 }
 
-func (*DockerStats) BlockIO(v string) string {
-	parts := strings.Split(v, "/")
+func (*DockerStats) BlockIO(x string) string {
+	parts := strings.Split(x, "/")
 
 	for i := range parts {
 		if strings.Contains(parts[i], "GB") {
@@ -145,10 +145,10 @@ func (*DockerStats) BlockIO(v string) string {
 	return parts[0] + color.DarkGray("/") + parts[1]
 }
 
-func (*DockerStats) PIDs(v string) string {
-	if number.ParseFloat(v) >= pidsThresholdHigh {
-		return color.Red(v)
+func (*DockerStats) PIDs(x string) string {
+	if number.ParseFloat(x) >= pidsThresholdHigh {
+		return color.Red(x)
 	}
 
-	return color.LightCyan(v)
+	return color.LightCyan(x)
 }

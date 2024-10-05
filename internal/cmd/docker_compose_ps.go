@@ -32,81 +32,81 @@ func (c *DockerComposePs) Columns() []string {
 }
 
 func (c *DockerComposePs) Format(row layout.Row, col layout.Column) string {
-	v := string(row[col])
+	x := string(row[col])
 
 	switch col {
 	case DockerComposePsName:
-		return c.Name(v, row)
+		return c.Name(x, row)
 	case DockerComposePsImage:
-		return c.Image(v)
+		return c.Image(x)
 	case DockerComposePsCommand:
-		return c.Command(v)
+		return c.Command(x)
 	case DockerComposePsService:
-		return c.Service(v, row)
+		return c.Service(x, row)
 	case DockerComposePsCreated:
-		return c.Created(v)
+		return c.Created(x)
 	case DockerComposePsStatus:
-		return c.Status(v)
+		return c.Status(x)
 	case DockerComposePsPorts:
-		return c.Ports(v)
+		return c.Ports(x)
 	default:
-		return v
+		return x
 	}
 }
 
-func (*DockerComposePs) Name(v string, row layout.Row) string {
+func (*DockerComposePs) Name(x string, row layout.Row) string {
 	if strings.Contains(string(row[DockerComposePsStatus]), "exited") {
-		return color.DarkGray(v)
+		return color.DarkGray(x)
 	}
 
-	return color.White(v)
+	return color.White(x)
 }
 
-func (*DockerComposePs) Image(v string) string {
-	parts := strings.Split(v, ":") //nolint:ifshort
+func (*DockerComposePs) Image(x string) string {
+	parts := strings.Split(x, ":") //nolint:ifshort
 	if len(parts) == ValidTotalParts {
 		return color.Yellow(parts[0]) + color.LightGreen(":"+parts[1])
 	}
 
-	return color.Yellow(v)
+	return color.Yellow(x)
 }
 
-func (*DockerComposePs) Command(v string) string {
-	return color.DarkGray(v)
+func (*DockerComposePs) Command(x string) string {
+	return color.DarkGray(x)
 }
 
-func (*DockerComposePs) Service(v string, row layout.Row) string {
+func (*DockerComposePs) Service(x string, row layout.Row) string {
 	if strings.Contains(string(row[DockerComposePsStatus]), "exited") {
-		return color.DarkGray(v)
+		return color.DarkGray(x)
 	}
 
-	return color.Yellow(v)
+	return color.Yellow(x)
 }
 
-func (*DockerComposePs) Created(v string) string {
-	if strings.Contains(v, "months") {
-		return color.Brown(v)
+func (*DockerComposePs) Created(x string) string {
+	if strings.Contains(x, "months") {
+		return color.Brown(x)
 	}
 
-	if strings.Contains(v, "years") {
-		return color.Red(v)
+	if strings.Contains(x, "years") {
+		return color.Red(x)
 	}
 
-	return color.Green(v)
+	return color.Green(x)
 }
 
-func (*DockerComposePs) Status(v string) string {
-	if strings.Contains(v, "exited") {
-		return color.Red(v)
+func (*DockerComposePs) Status(x string) string {
+	if strings.Contains(x, "exited") {
+		return color.Red(x)
 	}
 
-	return color.LightGreen(v)
+	return color.LightGreen(x)
 }
 
-func (*DockerComposePs) Ports(v string) string {
+func (*DockerComposePs) Ports(x string) string {
 	ports := make([]string, 0)
 
-	for _, port := range strings.Split(v, ", ") {
+	for _, port := range strings.Split(x, ", ") {
 		parts := strings.Split(port, "->")
 		if len(parts) == ValidTotalParts {
 			port = color.LightCyan(parts[0]) + "->" + parts[1]

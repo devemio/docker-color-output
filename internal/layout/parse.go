@@ -36,10 +36,10 @@ func ParseRows(rows []string, header *Header) []Row {
 				continue
 			}
 
-			v := parts[j-offset]
+			x := parts[j-offset]
 
-			length := len(v)
-			if strings.Contains(v, "…") {
+			length := len(x)
+			if strings.Contains(x, "…") {
 				length -= 2
 			}
 
@@ -47,7 +47,7 @@ func ParseRows(rows []string, header *Header) []Row {
 				col.MaxLength = length
 			}
 
-			res[i][col.Name] = Value(v)
+			res[i][col.Name] = Value(x)
 		}
 	}
 

@@ -28,7 +28,6 @@ func TestRun(t *testing.T) {
 		return res
 	}
 
-	//nolint:exhaustruct
 	tests := map[string]struct {
 		in      string
 		want    string
@@ -48,8 +47,6 @@ func TestRun(t *testing.T) {
 	}
 
 	for name, tt := range tests {
-		tt := tt
-
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 

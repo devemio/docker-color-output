@@ -23,13 +23,13 @@ func Pad(value string, length int) string {
 }
 
 func Intersect(needle, haystack []string) bool {
-	m := make(map[string]struct{}, len(haystack))
+	x := make(map[string]struct{}, len(haystack))
 	for _, v := range haystack {
-		m[v] = struct{}{}
+		x[v] = struct{}{}
 	}
 
 	for _, v := range needle {
-		if _, found := m[v]; !found {
+		if _, found := x[v]; !found {
 			return false
 		}
 	}
