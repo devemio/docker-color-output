@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+unalias dps
+
 di() {
   docker images "$@" | docker-color-output
 }
