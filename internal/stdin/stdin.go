@@ -12,30 +12,53 @@ import (
 
 var ErrEmpty = errors.New("empty")
 
-const rowsCap = 20
+const (
+	capRows = 50
+)
 
-// clsBytes contains bytes to clear
-// the screen for nix systems.
-var clsBytes = []byte("\033[2J\033[H") //nolint:gochecknoglobals
+//nolint:gochecknoglobals
+var (
+	xClearToEnd     = []byte("\033[J")
+	xClearToLineEnd = []byte("\033[K")
+	xMoveCursorHome = []byte("\033[H")
+)
 
+//nolint:cyclop
 func Get(fn func(rows []string) error) error {
 	fi, err := os.Stdin.Stat()
 	if err != nil {
 		return fmt.Errorf("stdin: %w", err)
-	}
-
-	if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
+	} else if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
 		return fmt.Errorf("stdin: %w", ErrEmpty)
 	}
 
-	rows := make([]string, 0, rowsCap)
+	var (
+		rows    = make([]string, 0, capRows)
+		scanner = bufio.NewScanner(os.Stdin)
+	)
 
-	scanner := bufio.NewScanner(os.Stdin)
 	for scanner.Scan() {
-		row, found := scanner.Bytes(), false //nolint:wastedassign
+		//nolint:wastedassign
+		row, found := scanner.Bytes(), false
 
-		if row, found = bytes.CutPrefix(row, clsBytes); found && len(rows) > 0 {
-			stdout.Print(string(clsBytes))
+		// xClearToLineEnd
+		if _, found = bytes.CutPrefix(row, xClearToLineEnd); found {
+			stdout.Print(string(xClearToLineEnd))
+
+			continue
+		}
+
+		// xClearToLineEnd
+		row = bytes.TrimSuffix(row, xClearToLineEnd)
+
+		// xClearToEnd
+		if row, found = bytes.CutPrefix(row, xClearToEnd); found {
+			stdout.Print(string(xClearToEnd))
+		}
+
+		// xMoveCursorHome
+		if row, found = bytes.CutPrefix(row, xMoveCursorHome); found && len(rows) > 0 {
+			stdout.Print(string(xMoveCursorHome))
 
 			if err = fn(rows); err != nil {
 				return err
@@ -51,9 +74,5 @@ func Get(fn func(rows []string) error) error {
 		return fmt.Errorf("stdin: scan: %w", err)
 	}
 
-	if err = fn(rows); err != nil {
-		return err
-	}
-
-	return nil
+	return fn(rows)
 }
