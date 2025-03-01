@@ -6,22 +6,14 @@ import (
 	"errors"
 	"fmt"
 	"os"
+	"runtime"
 
 	"github.com/devemio/docker-color-output/internal/stdout"
 )
 
 var ErrEmpty = errors.New("empty")
 
-const (
-	capRows = 50
-)
-
-//nolint:gochecknoglobals
-var (
-	xClearToEnd     = []byte("\033[J")
-	xClearToLineEnd = []byte("\033[K")
-	xMoveCursorHome = []byte("\033[H")
-)
+const capRows = 50
 
 //nolint:cyclop
 func Get(fn func(rows []string) error) error {
@@ -30,6 +22,16 @@ func Get(fn func(rows []string) error) error {
 		return fmt.Errorf("stdin: %w", err)
 	} else if fi.Mode()&os.ModeNamedPipe == 0 && fi.Size() <= 0 {
 		return fmt.Errorf("stdin: %w", ErrEmpty)
+	}
+
+	var (
+		xClearToEnd     = []byte("\033[J")
+		xClearToLineEnd = []byte("\033[K")
+		xMoveCursorHome = []byte("\033[H")
+	)
+
+	if runtime.GOOS != "darwin" {
+		xClearToLineEnd = []byte(" \033[K")
 	}
 
 	var (
