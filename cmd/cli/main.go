@@ -29,12 +29,16 @@ func run() error {
 	color.SetPalette(color.Palette(cfg.Colors))
 
 	return stdin.Get(func(rows []string) error { //nolint:wrapcheck
-		rows, err = app.Run(rows)
+		formatted, err := app.Run(rows)
 		if err != nil {
-			return fmt.Errorf("app: %w", err)
+			if !cfg.SilentMode {
+				return fmt.Errorf("app: %w", err)
+			}
+
+			formatted = rows
 		}
 
-		for _, row := range rows {
+		for _, row := range formatted {
 			stdout.Println(row)
 		}
 

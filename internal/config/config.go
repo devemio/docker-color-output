@@ -10,7 +10,8 @@ import (
 )
 
 type Config struct {
-	Colors Colors `json:"colors"`
+	SilentMode bool   `json:"-"`
+	Colors     Colors `json:"colors"`
 }
 
 type Colors struct {
@@ -41,6 +42,7 @@ func Get() (Config, error) {
 	}
 
 	cfgPath := flag.String("c", "", "Path to configuration file")
+	silentMode := flag.Bool("s", false, "Silent mode (suppress errors)")
 	flag.Parse()
 
 	if *cfgPath != "" {
@@ -54,11 +56,16 @@ func Get() (Config, error) {
 		}
 	}
 
+	if *silentMode {
+		cfg.SilentMode = true
+	}
+
 	return cfg, nil
 }
 
 func createDefault() Config {
 	return Config{
+		SilentMode: false,
 		Colors: Colors{
 			Reset:       "\u001B[0m",
 			Black:       "\u001B[0;30m",
