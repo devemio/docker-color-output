@@ -6,7 +6,6 @@ import (
 	"errors"
 	"fmt"
 	"os"
-	"runtime"
 
 	"github.com/devemio/docker-color-output/internal/stdout"
 )
@@ -24,14 +23,11 @@ func Get(fn func(rows []string) error) error {
 	}
 
 	var (
-		xClearToEnd     = []byte("\033[J")
-		xClearToLineEnd = []byte("\033[K")
-		xMoveCursorHome = []byte("\033[H")
+		xClearToEnd           = []byte("\033[J")
+		xClearToLineEnd       = []byte("\033[K")
+		xClearToLineEndPadded = []byte(" \033[K")
+		xMoveCursorHome       = []byte("\033[H")
 	)
-
-	if runtime.GOOS != "darwin" {
-		xClearToLineEnd = []byte(" \033[K")
-	}
 
 	var (
 		rows    = make([]string, 0, capRows)
@@ -39,33 +35,17 @@ func Get(fn func(rows []string) error) error {
 	)
 
 	for scanner.Scan() {
-		//nolint:wastedassign
-		row, found := scanner.Bytes(), false
-
-		// xClearToLineEnd
-		if _, found = bytes.CutPrefix(row, xClearToLineEnd); found {
-			stdout.Print(string(xClearToLineEnd))
-
-			continue
-		}
-
-		// xClearToLineEnd
-		row = bytes.TrimSuffix(row, xClearToLineEnd)
-
-		// xClearToEnd
-		if row, found = bytes.CutPrefix(row, xClearToEnd); found {
-			stdout.Print(string(xClearToEnd))
-		}
-
-		// xMoveCursorHome
-		if row, found = bytes.CutPrefix(row, xMoveCursorHome); found && len(rows) > 0 {
-			stdout.Print(string(xMoveCursorHome))
-
+		row, reset, skip := processRow(scanner.Bytes(), xClearToEnd, xClearToLineEnd, xClearToLineEndPadded, xMoveCursorHome)
+		if reset && len(rows) > 0 {
 			if err = fn(rows); err != nil {
 				return err
 			}
 
 			rows = rows[:0]
+		}
+
+		if skip {
+			continue
 		}
 
 		rows = append(rows, string(row))
@@ -76,4 +56,56 @@ func Get(fn func(rows []string) error) error {
 	}
 
 	return fn(rows)
+}
+
+func processRow(row, xClearToEnd, xClearToLineEnd, xClearToLineEndPadded, xMoveCursorHome []byte) ([]byte, bool, bool) {
+	reset := false
+
+	if rest, prefix, ok := cutPrefixAny(row, xClearToLineEnd, xClearToLineEndPadded); ok {
+		stdout.Print(string(prefix))
+		row = rest
+		if len(row) == 0 {
+			return nil, false, true
+		}
+	}
+
+	row = trimSuffixAny(row, xClearToLineEnd, xClearToLineEndPadded)
+
+	if rest, ok := bytes.CutPrefix(row, xClearToEnd); ok {
+		stdout.Print(string(xClearToEnd))
+		row = rest
+	}
+
+	if rest, ok := bytes.CutPrefix(row, xMoveCursorHome); ok {
+		stdout.Print(string(xMoveCursorHome))
+		row = rest
+		reset = true
+	}
+
+	row = bytes.TrimRight(row, " \t\r")
+	if len(row) == 0 {
+		return nil, reset, true
+	}
+
+	return row, reset, false
+}
+
+func cutPrefixAny(row []byte, prefixes ...[]byte) ([]byte, []byte, bool) {
+	for _, prefix := range prefixes {
+		if bytes.HasPrefix(row, prefix) {
+			return row[len(prefix):], prefix, true
+		}
+	}
+
+	return row, nil, false
+}
+
+func trimSuffixAny(row []byte, suffixes ...[]byte) []byte {
+	for _, suffix := range suffixes {
+		if bytes.HasSuffix(row, suffix) {
+			return row[:len(row)-len(suffix)]
+		}
+	}
+
+	return row
 }
