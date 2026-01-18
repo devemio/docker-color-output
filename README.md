@@ -10,13 +10,13 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
 </p>
 
-Docker Color Output is a lightweight tool that enhances Docker's command output by adding vibrant, customizable colors. It processes the standard output through a pipeline, making it easier to read and more visually appealing.
+Docker Color Output is a lightweight CLI that adds readable, customizable colors to Docker command output. It reads from stdin, applies a YAML-driven ruleset, and writes the colored table to stdout.
 
 ## Features 🚀
 
 - **Cross-Platform Support:** Works on macOS, Linux, and Windows.
-- **Customizable Color Schemes:** Easily adjust the colors to your preference.
-- **Pipeline Integration:** Transforms Docker command outputs into colorful, structured displays.
+- **Customizable Rules:** Define per-column color rules in YAML, including match/threshold logic.
+- **Pipeline Integration:** Works as a simple pipe in shell workflows.
 
 ## Installation 👨‍💻
 
@@ -52,7 +52,7 @@ docker-color-output -c ~/.config/docker-color-output/config.yaml
 
 ##### Default Configuration File
 
-See `internal/config/default.yaml` for the full default configuration, including all rules.
+See `internal/config/default.yaml` for the full default configuration, including all commands and rules.
 
 ##### Example Override
 
@@ -90,15 +90,18 @@ Enhance your Docker workflow with these handy aliases and enjoy vibrant outputs.
 
 Utilize the bash functions provided in [aliases.sh](bash/aliases.sh) to streamline your commands.
 
-### docker images 💡
+### docker images / docker image ls 💡
 
 ```bash
 di # alias
 ```
 
 ```bash
-docker images [--format] | docker-color-output
+docker images [--format] 2>/dev/null | docker-color-output
 ```
+
+> [!NOTE]
+> On Docker 29+, `docker images` writes extra output to stderr, so redirect it (`2>/dev/null`) when piping into `docker-color-output`.
 
 ![docker images](https://user-images.githubusercontent.com/5787193/93581956-7ae7f580-f9aa-11ea-8f81-d6922e1ca892.png)
 

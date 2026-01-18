@@ -46,7 +46,10 @@ type Layout struct {
 var defaultConfig []byte
 
 func Get() (Config, error) {
-	cfg := createDefault()
+	cfg, err := createDefault()
+	if err != nil {
+		return Config{}, fmt.Errorf("default: %w", err)
+	}
 
 	flag.Usage = func() {
 		app.Usage(nil)
@@ -77,17 +80,17 @@ func Get() (Config, error) {
 	return cfg, nil
 }
 
-func Default() Config {
+func Default() (Config, error) {
 	return createDefault()
 }
 
-func createDefault() Config {
+func createDefault() (Config, error) {
 	var cfg Config
 	if err := yaml.Unmarshal(defaultConfig, &cfg); err != nil {
-		return Config{}
+		return Config{}, err
 	}
 
-	return cfg
+	return cfg, nil
 }
 
 func merge(base Config, override Config) Config {

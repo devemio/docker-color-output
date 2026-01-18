@@ -1,0 +1,3 @@
+[1;34mIMAGE[0m            [1;34mID[0m             [1;34mDISK USAGE[0m   [1;34mCONTENT SIZE[0m   [1;34mEXTRA[0m   
+[1;33malpine[0m[1;32m:latest[0m    [1;30me7b39c54cdec[0m   8.44MB       0B                     
+[1;33mbusybox[0m[1;32m:latest[0m   [1;30m08ef35a1c3f0[0m   4.43MB       0B             U       

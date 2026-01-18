@@ -15,7 +15,10 @@ import (
 func TestRun(t *testing.T) {
 	t.Parallel()
 
-	cfg := config.Default()
+	cfg, err := config.Default()
+	if err != nil {
+		t.Fatalf("default config: %v", err)
+	}
 
 	read := func(filename string) []string {
 		_, b, _, _ := runtime.Caller(0)
@@ -44,6 +47,7 @@ func TestRun(t *testing.T) {
 		"docker_ps:nullable_col":  {in: "docker_ps_nullable_col.out", want: "docker_ps_nullable_col.out"},
 		"docker_ps:nullable_cols": {in: "docker_ps_nullable_cols.out", wantErr: true},
 		"docker_images":           {in: "docker_images.out", want: "docker_images.out"},
+		"docker_images_29":        {in: "docker_images_29.out", want: "docker_images_29.out"},
 		"docker_compose_ps":       {in: "docker_compose_ps.out", want: "docker_compose_ps.out"},
 		"docker_compose_ps_1":     {in: "docker_compose_ps_1.out", want: "docker_compose_ps_1.out"},
 		"docker_stats":            {in: "docker_stats.out", want: "docker_stats.out"},

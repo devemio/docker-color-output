@@ -149,6 +149,53 @@ rules:
                 - contains: "MB"
                   numberGte: 500
                   color: brown
+    dockerImages29:
+      columns:
+        - "IMAGE"
+        - "ID"
+        - "DISK USAGE"
+        - "CONTENT SIZE"
+        - "EXTRA"
+      rules:
+        "IMAGE":
+          pipeline:
+            - type: split
+              delimiter: ":"
+              parts:
+                - pipeline:
+                    - type: color
+                      color: yellow
+                - prefix: ":"
+                  pipeline:
+                    - type: color
+                      color: lightGreen
+              joiner:
+                value: ""
+              fallback:
+                - type: color
+                  color: yellow
+        "ID":
+          pipeline:
+            - type: color
+              color: darkGray
+        "DISK USAGE":
+          pipeline:
+            - type: match
+              when:
+                - contains: "GB"
+                  color: red
+                - contains: "MB"
+                  numberGte: 500
+                  color: brown
+        "CONTENT SIZE":
+          pipeline:
+            - type: match
+              when:
+                - contains: "GB"
+                  color: red
+                - contains: "MB"
+                  numberGte: 500
+                  color: brown
     dockerComposePs:
       columns:
         - "NAME"

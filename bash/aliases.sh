@@ -3,7 +3,7 @@
 unalias dps
 
 di() {
-  docker images "$@" | docker-color-output
+  docker images "$@" 2>/dev/null | docker-color-output
 }
 
 dps() {

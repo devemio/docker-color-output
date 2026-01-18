@@ -1,6 +1,6 @@
 package app
 
 const (
-	Ver  = "2.6.1"
+	Ver  = "3.0.0"
 	Name = "docker-color-output"
 )

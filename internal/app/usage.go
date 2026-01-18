@@ -16,7 +16,7 @@ func Usage(err error) {
 
 	stderr.Println("👌 Usage:")
 	stderr.Println(indent + color.Green("docker compose ps") + " [-a] | " + color.Brown(Name))
-	stderr.Println(indent + color.Green("docker images") + " [--format] | " + color.Brown(Name))
+	stderr.Println(indent + color.Green("docker images") + " [--format] 2>/dev/null | " + color.Brown(Name))
 	stderr.Println(indent + color.Green("docker ps") + " [-a] [--format] | " + color.Brown(Name))
 	stderr.Println(indent + color.Green("docker stats") + " [--no-stream] | " + color.Brown(Name))
 

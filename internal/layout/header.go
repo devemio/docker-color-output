@@ -5,6 +5,7 @@ var nullableCols = map[Column]struct{}{
 	"PORTS":    {},
 	"MOUNTS":   {},
 	"NETWORKS": {},
+	"EXTRA":    {},
 }
 
 type Cell struct {
@@ -19,15 +20,6 @@ func (c *Cell) IsNullable() bool {
 }
 
 type Header []*Cell
-
-func (h Header) ToRow() Row {
-	res := make(Row, len(h))
-	for _, col := range h {
-		res[col.Name] = Value(col.Name)
-	}
-
-	return res
-}
 
 func (h Header) NullableCols() byte {
 	var res byte

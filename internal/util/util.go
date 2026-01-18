@@ -12,8 +12,10 @@ const (
 	NonPrintableCharactersLength = 11
 )
 
+var splitRegexp = regexp.MustCompile(`\s{2,}`) //nolint:gochecknoglobals
+
 func Split(in string) []string {
-	return regexp.MustCompile(`\s{2,}`).Split(in, -1)
+	return splitRegexp.Split(in, -1)
 }
 
 func Pad(value string, length int) string {
