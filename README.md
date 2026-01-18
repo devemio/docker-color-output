@@ -10,17 +10,17 @@
   <a href="https://opensource.org/licenses/MIT"><img src="https://img.shields.io/badge/license-MIT-green.svg" alt="License"></a>
 </p>
 
-Docker Color Output is a lightweight CLI that adds readable, customizable colors to Docker command output. It reads from stdin, applies a YAML-driven ruleset, and writes the colored table to stdout.
+Docker Color Output is a lightweight CLI that adds readable, customizable colors to Docker command output. It reads from stdin, applies a YAML ruleset, and writes colored tables to stdout.
 
 ## Features 🚀
 
 - **Cross-Platform Support:** Works on macOS, Linux, and Windows.
-- **Customizable Rules:** Define per-column color rules in YAML, including match/threshold logic.
-- **Pipeline Integration:** Works as a simple pipe in shell workflows.
+- **Customizable Rules:** Define per-column rules in YAML, including matches and thresholds.
+- **Pipeline Integration:** Fits naturally into shell pipelines.
 
 ## Installation 👨‍💻
 
-You can find all compiled binaries on the [releases](https://github.com/devemio/docker-color-output/releases) page.
+You can download prebuilt binaries from the [releases](https://github.com/devemio/docker-color-output/releases) page.
 
 #### Mac 🍏
 
@@ -42,9 +42,9 @@ Download the Windows build from the [releases](https://github.com/devemio/docker
 
 ## Configuration ⚙️
 
-Easily tailor the color scheme and rules to match your personal preferences. Run `docker-color-output` with the
-`-c` flag and provide the path to your custom YAML configuration file. Any settings you omit will fall back to
-the built-in defaults, while the settings you provide will override them.
+Easily tailor the color scheme and rules. Run `docker-color-output` with the `-c` flag and provide a path to your
+custom YAML configuration file. Any settings you omit fall back to the built-in defaults, while provided settings
+override them.
 
 ```shell
 docker-color-output -c ~/.config/docker-color-output/config.yaml
@@ -75,8 +75,8 @@ rules:
 
 ### Silent Mode 🔇
 
-Silent Mode ensures a cleaner output by suppressing error messages. When enabled, if an error occurs,
-the tool will simply pass through the original Docker output without displaying any error notifications.
+Silent Mode keeps output clean by suppressing error messages. When enabled and an error occurs, the tool passes
+through the original Docker output without extra notifications.
 
 ```bash
 docker ps | docker-color-output -s
@@ -84,11 +84,11 @@ docker ps | docker-color-output -s
 
 ## Usage 📚
 
-Enhance your Docker workflow with these handy aliases and enjoy vibrant outputs.
+Enhance your Docker workflow with these handy aliases and outputs.
 
 ### Aliases 🪄
 
-Utilize the bash functions provided in [aliases.sh](bash/aliases.sh) to streamline your commands.
+Use the bash functions provided in [aliases.sh](bash/aliases.sh) to streamline your commands.
 
 ### docker images / docker image ls 💡
 
@@ -120,7 +120,7 @@ docker ps [-a] [--format] | docker-color-output
 #### docker compose ps 💡
 
 > [!NOTE]
-> The latest version supports docker compose `2.x`.
+> Docker compose `2.x` is supported.
 
 ```bash
 dcps # alias

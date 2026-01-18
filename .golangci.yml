@@ -3,14 +3,22 @@ linters:
   default: all
   disable:
     - depguard
-    - cyclop
     - noinlineerr
     - nlreturn
-    - revive
-    - wrapcheck
     - wsl
     - wsl_v5
   settings:
+    cyclop:
+      max-complexity: 20
+    revive:
+      rules:
+        - name: blank-imports
+        - name: context-keys-type
+        - name: error-strings
+        - name: if-return
+        - name: receiver-naming
+        - name: time-naming
+        - name: var-declaration
     varnamelen:
       ignore-names:
         - i, j, fn, in, tt
@@ -27,10 +35,9 @@ linters:
           - exhaustruct
           - funlen
         path: (.+)_test\.go
-    paths:
-      - third_party$
-      - builtin$
-      - examples$
+      - linters:
+          - wrapcheck
+        text: gopkg\.in/yaml\.v3\.Unmarshal
 formatters:
   enable:
     - gci
@@ -40,10 +47,6 @@ formatters:
       sections:
         - standard
         - default
-        - prefix(github.com/devemio/docker-color-output)
+        - localmodule
   exclusions:
     generated: lax
-    paths:
-      - third_party$
-      - builtin$
-      - examples$

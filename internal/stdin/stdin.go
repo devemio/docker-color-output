@@ -15,7 +15,6 @@ var ErrEmpty = errors.New("empty")
 
 const capRows = 50
 
-//nolint:cyclop
 func Get(fn func(rows []string) error) error {
 	fi, err := os.Stdin.Stat()
 	if err != nil {

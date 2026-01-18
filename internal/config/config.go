@@ -89,7 +89,7 @@ func Default() (Config, error) {
 func createDefault() (Config, error) {
 	var cfg Config
 	if err := yaml.Unmarshal(defaultConfig, &cfg); err != nil {
-		return Config{}, err
+		return Config{}, fmt.Errorf("unmarshal default: %w", err)
 	}
 
 	return cfg, nil
