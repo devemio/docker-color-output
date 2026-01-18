@@ -163,20 +163,29 @@ func mergeLayout(base Layout, override Layout) Layout {
 }
 
 func mergeRules(base rules.Config, override rules.Config) rules.Config {
-	base.DockerPs = mergeCommand(base.DockerPs, override.DockerPs)
-	base.DockerImages = mergeCommand(base.DockerImages, override.DockerImages)
-	base.DockerComposePs = mergeCommand(base.DockerComposePs, override.DockerComposePs)
-	base.DockerStats = mergeCommand(base.DockerStats, override.DockerStats)
+	if base.Commands == nil {
+		base.Commands = make(map[string]rules.CommandConfig)
+	}
+	for name, command := range override.Commands {
+		if existing, ok := base.Commands[name]; ok {
+			base.Commands[name] = mergeCommand(existing, command)
+			continue
+		}
+		base.Commands[name] = command
+	}
 
 	return base
 }
 
 func mergeCommand(base rules.CommandConfig, override rules.CommandConfig) rules.CommandConfig {
-	if base.Columns == nil {
-		base.Columns = make(map[string]rules.ColumnRule)
+	if len(override.Columns) > 0 {
+		base.Columns = append([]string(nil), override.Columns...)
 	}
-	for name, rule := range override.Columns {
-		base.Columns[name] = rule
+	if base.Rules == nil {
+		base.Rules = make(map[string]rules.ColumnRule)
+	}
+	for name, rule := range override.Rules {
+		base.Rules[name] = rule
 	}
 
 	return base

@@ -60,16 +60,17 @@ See `internal/config/default.yaml` for the full default configuration, including
 layout:
   headerColor: yellow
 rules:
-  dockerPs:
-    columns:
-      "STATUS":
-        pipeline:
-          - type: match
-            when:
-              - contains: "Exited"
-                color: red
-            default:
-              color: brown
+  commands:
+    dockerPs:
+      rules:
+        "STATUS":
+          pipeline:
+            - type: match
+              when:
+                - contains: "Exited"
+                  color: red
+              default:
+                color: brown
 ```
 
 ### Silent Mode 🔇

@@ -9,14 +9,12 @@ import (
 )
 
 type Config struct {
-	DockerPs        CommandConfig `yaml:"dockerPs"`
-	DockerImages    CommandConfig `yaml:"dockerImages"`
-	DockerComposePs CommandConfig `yaml:"dockerComposePs"`
-	DockerStats     CommandConfig `yaml:"dockerStats"`
+	Commands map[string]CommandConfig `yaml:"commands"`
 }
 
 type CommandConfig struct {
-	Columns map[string]ColumnRule `yaml:"columns"`
+	Columns []string              `yaml:"columns"`
+	Rules   map[string]ColumnRule `yaml:"rules"`
 }
 
 type Pipeline []Step
