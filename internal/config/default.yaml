@@ -1,0 +1,296 @@
+colors:
+  reset: "\u001b[0m"
+  black: "\u001b[0;30m"
+  darkGray: "\u001b[1;30m"
+  red: "\u001b[0;31m"
+  lightRed: "\u001b[1;31m"
+  green: "\u001b[0;32m"
+  lightGreen: "\u001b[1;32m"
+  brown: "\u001b[0;33m"
+  yellow: "\u001b[1;33m"
+  blue: "\u001b[0;34m"
+  lightBlue: "\u001b[1;34m"
+  purple: "\u001b[0;35m"
+  lightPurple: "\u001b[1;35m"
+  cyan: "\u001b[0;36m"
+  lightCyan: "\u001b[1;36m"
+  lightGray: "\u001b[0;37m"
+  white: "\u001b[1;37m"
+layout:
+  headerColor: lightBlue
+rules:
+  dockerPs:
+    columns:
+      "CONTAINER ID":
+        pipeline:
+          - type: color
+            color: darkGray
+      "IMAGE":
+        pipeline:
+          - type: split
+            delimiter: ":"
+            parts:
+              - pipeline:
+                  - type: color
+                    color: yellow
+              - prefix: ":"
+                pipeline:
+                  - type: color
+                    color: lightGreen
+            joiner:
+              value: ""
+            fallback:
+              - type: color
+                color: yellow
+      "COMMAND":
+        pipeline:
+          - type: color
+            color: darkGray
+      "CREATED":
+        pipeline:
+          - type: match
+            when:
+              - contains: "months"
+                color: brown
+              - contains: "years"
+                color: red
+            default:
+              color: green
+      "STATUS":
+        pipeline:
+          - type: match
+            when:
+              - contains: "Exited"
+                color: red
+            default:
+              color: lightGreen
+      "PORTS":
+        pipeline:
+          - type: list
+            delimiter: ", "
+            item:
+              - type: split
+                delimiter: "->"
+                parts:
+                  - pipeline:
+                      - type: color
+                        color: lightCyan
+                  - prefix: "->"
+                    pipeline: []
+                joiner:
+                  value: ""
+      "NAMES":
+        pipeline:
+          - type: color
+            color: white
+  dockerImages:
+    columns:
+      "REPOSITORY":
+        pipeline:
+          - type: match
+            when:
+              - contains: "/"
+                color: darkGray
+            default:
+              color: white
+      "TAG":
+        pipeline:
+          - type: match
+            when:
+              - equals: "latest"
+                color: lightGreen
+      "IMAGE ID":
+        pipeline:
+          - type: color
+            color: darkGray
+      "CREATED":
+        pipeline:
+          - type: match
+            when:
+              - contains: "hour"
+                color: green
+              - contains: "days"
+                color: green
+              - contains: "weeks"
+                color: green
+              - contains: "months"
+                color: brown
+              - contains: "years"
+                color: red
+      "SIZE":
+        pipeline:
+          - type: match
+            when:
+              - contains: "GB"
+                color: red
+              - contains: "MB"
+                numberGte: 500
+                color: brown
+  dockerComposePs:
+    columns:
+      "NAME":
+        pipeline:
+          - type: match
+            when:
+              - column: "STATUS"
+                contains: "exited"
+                color: darkGray
+            default:
+              color: white
+      "IMAGE":
+        pipeline:
+          - type: split
+            delimiter: ":"
+            parts:
+              - pipeline:
+                  - type: color
+                    color: yellow
+              - prefix: ":"
+                pipeline:
+                  - type: color
+                    color: lightGreen
+            joiner:
+              value: ""
+            fallback:
+              - type: color
+                color: yellow
+      "COMMAND":
+        pipeline:
+          - type: color
+            color: darkGray
+      "SERVICE":
+        pipeline:
+          - type: match
+            when:
+              - column: "STATUS"
+                contains: "exited"
+                color: darkGray
+            default:
+              color: yellow
+      "CREATED":
+        pipeline:
+          - type: match
+            when:
+              - contains: "months"
+                color: brown
+              - contains: "years"
+                color: red
+            default:
+              color: green
+      "STATUS":
+        pipeline:
+          - type: match
+            when:
+              - contains: "exited"
+                color: red
+            default:
+              color: lightGreen
+      "PORTS":
+        pipeline:
+          - type: list
+            delimiter: ", "
+            item:
+              - type: split
+                delimiter: "->"
+                parts:
+                  - pipeline:
+                      - type: color
+                        color: lightCyan
+                  - prefix: "->"
+                    pipeline: []
+                joiner:
+                  value: ""
+  dockerStats:
+    columns:
+      "CONTAINER ID":
+        pipeline:
+          - type: color
+            color: darkGray
+      "NAME":
+        pipeline:
+          - type: color
+            color: white
+      "CPU %":
+        pipeline:
+          - type: match
+            when:
+              - numberGte: 90
+                color: red
+              - numberGte: 50
+                color: brown
+      "MEM USAGE / LIMIT":
+        pipeline:
+          - type: split
+            delimiter: "/"
+            parts:
+              - pipeline: []
+              - prefix: "/"
+                pipeline:
+                  - type: color
+                    color: darkGray
+            joiner:
+              value: ""
+      "MEM %":
+        pipeline:
+          - type: match
+            when:
+              - numberGte: 90
+                color: red
+              - numberGte: 50
+                color: brown
+      "NET I/O":
+        pipeline:
+          - type: split
+            delimiter: "/"
+            parts:
+              - pipeline:
+                  - type: match
+                    when:
+                      - contains: "GB"
+                        numberGte: 10
+                        color: red
+                      - contains: "GB"
+                        color: brown
+              - pipeline:
+                  - type: match
+                    when:
+                      - contains: "GB"
+                        numberGte: 10
+                        color: red
+                      - contains: "GB"
+                        color: brown
+            joiner:
+              value: "/"
+              color: darkGray
+      "BLOCK I/O":
+        pipeline:
+          - type: split
+            delimiter: "/"
+            parts:
+              - pipeline:
+                  - type: match
+                    when:
+                      - contains: "GB"
+                        numberGte: 10
+                        color: red
+                      - contains: "GB"
+                        color: brown
+              - pipeline:
+                  - type: match
+                    when:
+                      - contains: "GB"
+                        numberGte: 10
+                        color: red
+                      - contains: "GB"
+                        color: brown
+            joiner:
+              value: "/"
+              color: darkGray
+      "PIDS":
+        pipeline:
+          - type: match
+            when:
+              - numberGte: 100
+                color: red
+            default:
+              color: lightCyan

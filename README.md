@@ -42,38 +42,34 @@ Download the Windows build from the [releases](https://github.com/devemio/docker
 
 ## Configuration ⚙️
 
-Easily tailor the color scheme to match your personal preferences. Simply run `docker-color-output` with the`-c`
-flag and provide the path to your custom configuration file. You can override any subset of the default
-colors—any color setting not specified in your file will automatically revert to the default.
+Easily tailor the color scheme and rules to match your personal preferences. Run `docker-color-output` with the
+`-c` flag and provide the path to your custom YAML configuration file. Any settings you omit will fall back to
+the built-in defaults, while the settings you provide will override them.
 
 ```shell
-docker-color-output -c ~/.config/docker-color-output/config.json
+docker-color-output -c ~/.config/docker-color-output/config.yaml
 ```
 
 ##### Default Configuration File
 
-```json
-{
-  "colors": {
-    "reset": "\u001b[0m",
-    "black": "\u001b[0;30m",
-    "darkGray": "\u001b[1;30m",
-    "red": "\u001b[0;31m",
-    "lightRed": "\u001b[1;31m",
-    "green": "\u001b[0;32m",
-    "lightGreen": "\u001b[1;32m",
-    "brown": "\u001b[0;33m",
-    "yellow": "\u001b[1;33m",
-    "blue": "\u001b[0;34m",
-    "lightBlue": "\u001b[1;34m",
-    "purple": "\u001b[0;35m",
-    "lightPurple": "\u001b[1;35m",
-    "cyan": "\u001b[0;36m",
-    "lightCyan": "\u001b[1;36m",
-    "lightGray": "\u001b[0;37m",
-    "white": "\u001b[1;37m"
-  }
-}
+See `internal/config/default.yaml` for the full default configuration, including all rules.
+
+##### Example Override
+
+```yaml
+layout:
+  headerColor: yellow
+rules:
+  dockerPs:
+    columns:
+      "STATUS":
+        pipeline:
+          - type: match
+            when:
+              - contains: "Exited"
+                color: red
+            default:
+              color: brown
 ```
 
 ### Silent Mode 🔇

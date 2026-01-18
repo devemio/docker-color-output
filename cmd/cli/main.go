@@ -29,7 +29,7 @@ func run() error {
 	color.SetPalette(color.Palette(cfg.Colors))
 
 	return stdin.Get(func(rows []string) error { //nolint:wrapcheck
-		formatted, err := app.Run(rows)
+		formatted, err := app.Run(rows, cfg.Rules, cfg.Layout.HeaderColor)
 		if err != nil {
 			if !cfg.SilentMode {
 				return fmt.Errorf("app: %w", err)

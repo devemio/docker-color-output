@@ -8,11 +8,14 @@ import (
 	"testing"
 
 	"github.com/devemio/docker-color-output/internal/app"
+	"github.com/devemio/docker-color-output/internal/config"
 	"github.com/devemio/docker-color-output/pkg/util/assert"
 )
 
 func TestRun(t *testing.T) {
 	t.Parallel()
+
+	cfg := config.Default()
 
 	read := func(filename string) []string {
 		_, b, _, _ := runtime.Caller(0)
@@ -50,7 +53,7 @@ func TestRun(t *testing.T) {
 		t.Run(name, func(t *testing.T) {
 			t.Parallel()
 
-			rows, err := app.Run(read("in/" + tt.in))
+			rows, err := app.Run(read("in/"+tt.in), cfg.Rules, cfg.Layout.HeaderColor)
 			assert.Equal(t, tt.wantErr, err != nil)
 			assert.Equal(t, read("out/"+tt.want), rows)
 		})
