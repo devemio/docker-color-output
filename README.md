@@ -90,6 +90,9 @@ Enhance your Docker workflow with these handy aliases and outputs.
 
 Use the bash functions provided in [aliases.sh](bash/aliases.sh) to streamline your commands.
 
+> [!NOTE]
+> Tested with Docker `29.1.3`.
+
 ### docker images / docker image ls 💡
 
 ```bash
