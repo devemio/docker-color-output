@@ -4,11 +4,13 @@ import (
 	_ "embed"
 	"flag"
 	"fmt"
+	"maps"
 	"os"
+
+	"gopkg.in/yaml.v3"
 
 	"github.com/devemio/docker-color-output/internal/app"
 	"github.com/devemio/docker-color-output/internal/rules"
-	"gopkg.in/yaml.v3"
 )
 
 type Config struct {
@@ -187,9 +189,7 @@ func mergeCommand(base rules.CommandConfig, override rules.CommandConfig) rules.
 	if base.Rules == nil {
 		base.Rules = make(map[string]rules.ColumnRule)
 	}
-	for name, rule := range override.Rules {
-		base.Rules[name] = rule
-	}
+	maps.Copy(base.Rules, override.Rules)
 
 	return base
 }

@@ -173,13 +173,13 @@ func Colorize(name string, value string) string {
 }
 
 func normalizeColorName(name string) string {
-	var b strings.Builder
+	var sb strings.Builder
 	for _, r := range strings.ToLower(name) {
 		if r >= 'a' && r <= 'z' {
-			b.WriteRune(r)
+			sb.WriteRune(r)
 		}
 	}
-	return b.String()
+	return sb.String()
 }
 
 var colorFuncs = map[string]func(string) string{ //nolint:gochecknoglobals

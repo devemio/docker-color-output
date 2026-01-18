@@ -1,22 +1,49 @@
+version: "2"
 linters:
-  enable-all: true
+  default: all
   disable:
     - depguard
-
-linters-settings:
-  gci:
-    sections:
-      - standard
-      - default
-      - prefix(github.com/devemio/docker-color-output)
-  varnamelen:
-    ignore-names:
-      - i, j, fn, in, tt
-      - x, sb
-
-issues:
-  exclude-rules:
-    - path: '(.+)_test\.go'
-      linters:
-        - funlen
-        - exhaustruct
+    - cyclop
+    - noinlineerr
+    - nlreturn
+    - revive
+    - wrapcheck
+    - wsl
+    - wsl_v5
+  settings:
+    varnamelen:
+      ignore-names:
+        - i, j, fn, in, tt
+        - x, sb
+  exclusions:
+    generated: lax
+    presets:
+      - comments
+      - common-false-positives
+      - legacy
+      - std-error-handling
+    rules:
+      - linters:
+          - exhaustruct
+          - funlen
+        path: (.+)_test\.go
+    paths:
+      - third_party$
+      - builtin$
+      - examples$
+formatters:
+  enable:
+    - gci
+    - gofmt
+  settings:
+    gci:
+      sections:
+        - standard
+        - default
+        - prefix(github.com/devemio/docker-color-output)
+  exclusions:
+    generated: lax
+    paths:
+      - third_party$
+      - builtin$
+      - examples$

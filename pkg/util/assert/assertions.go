@@ -5,7 +5,7 @@ import (
 	"testing"
 )
 
-func Equal(t *testing.T, expected, actual interface{}) {
+func Equal(t *testing.T, expected, actual any) {
 	t.Helper()
 
 	if !reflect.DeepEqual(expected, actual) {
