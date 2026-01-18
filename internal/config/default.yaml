@@ -381,3 +381,240 @@ rules:
                   color: red
               default:
                 color: lightCyan
+    kubectlGetPods:
+      columns:
+        - "NAME"
+        - "READY"
+        - "STATUS"
+        - "RESTARTS"
+        - "AGE"
+        - "IP"
+        - "NODE"
+        - "NOMINATED NODE"
+        - "READINESS GATES"
+      rules:
+        "NAME":
+          pipeline:
+            - type: color
+              color: white
+        "READY":
+          pipeline:
+            - type: match
+              when:
+                - contains: "0/"
+                  color: red
+              default:
+                color: lightGreen
+        "STATUS":
+          pipeline:
+            - type: match
+              when:
+                - contains: "Running"
+                  color: lightGreen
+                - contains: "Completed"
+                  color: lightBlue
+                - contains: "Pending"
+                  color: yellow
+                - contains: "ContainerCreating"
+                  color: yellow
+                - contains: "CrashLoopBackOff"
+                  color: red
+                - contains: "ImagePullBackOff"
+                  color: red
+                - contains: "ErrImagePull"
+                  color: red
+                - contains: "Error"
+                  color: red
+                - contains: "Unknown"
+                  color: red
+                - contains: "Evicted"
+                  color: red
+        "RESTARTS":
+          pipeline:
+            - type: match
+              when:
+                - numberGte: 5
+                  color: red
+                - numberGte: 1
+                  color: brown
+              default:
+                color: lightGreen
+        "IP":
+          pipeline:
+            - type: color
+              color: lightCyan
+        "NODE":
+          pipeline:
+            - type: color
+              color: darkGray
+        "NOMINATED NODE":
+          pipeline:
+            - type: color
+              color: darkGray
+        "READINESS GATES":
+          pipeline:
+            - type: color
+              color: darkGray
+    kubectlGetServices:
+      columns:
+        - "NAME"
+        - "TYPE"
+        - "CLUSTER-IP"
+        - "EXTERNAL-IP"
+        - "PORT(S)"
+        - "AGE"
+        - "SELECTOR"
+      rules:
+        "NAME":
+          pipeline:
+            - type: color
+              color: white
+        "TYPE":
+          pipeline:
+            - type: match
+              when:
+                - equals: "LoadBalancer"
+                  color: lightGreen
+                - equals: "NodePort"
+                  color: yellow
+                - equals: "ClusterIP"
+                  color: lightCyan
+                - equals: "ExternalName"
+                  color: brown
+        "CLUSTER-IP":
+          pipeline:
+            - type: color
+              color: darkGray
+        "EXTERNAL-IP":
+          pipeline:
+            - type: match
+              when:
+                - equals: "<none>"
+                  color: brown
+                - equals: "<pending>"
+                  color: yellow
+              default:
+                color: lightGreen
+        "PORT(S)":
+          pipeline:
+            - type: list
+              delimiter: ","
+              item:
+                - type: split
+                  delimiter: ":"
+                  parts:
+                    - pipeline:
+                        - type: color
+                          color: lightCyan
+                    - prefix: ":"
+                      pipeline:
+                        - type: color
+                          color: yellow
+                  joiner:
+                    value: ""
+                  fallback:
+                    - type: color
+                      color: lightCyan
+        "SELECTOR":
+          pipeline:
+            - type: color
+              color: darkGray
+    kubectlGetNodes:
+      columns:
+        - "NAME"
+        - "STATUS"
+        - "ROLES"
+        - "AGE"
+        - "VERSION"
+        - "INTERNAL-IP"
+        - "EXTERNAL-IP"
+        - "OS-IMAGE"
+        - "KERNEL-VERSION"
+        - "CONTAINER-RUNTIME"
+      rules:
+        "NAME":
+          pipeline:
+            - type: color
+              color: white
+        "STATUS":
+          pipeline:
+            - type: match
+              when:
+                - contains: "NotReady"
+                  color: red
+                - contains: "SchedulingDisabled"
+                  color: brown
+                - contains: "Ready"
+                  color: lightGreen
+        "ROLES":
+          pipeline:
+            - type: match
+              when:
+                - equals: "<none>"
+                  color: darkGray
+              default:
+                color: yellow
+        "VERSION":
+          pipeline:
+            - type: color
+              color: lightCyan
+        "INTERNAL-IP":
+          pipeline:
+            - type: color
+              color: lightBlue
+        "EXTERNAL-IP":
+          pipeline:
+            - type: match
+              when:
+                - equals: "<none>"
+                  color: brown
+              default:
+                color: lightBlue
+        "OS-IMAGE":
+          pipeline:
+            - type: color
+              color: darkGray
+        "KERNEL-VERSION":
+          pipeline:
+            - type: color
+              color: darkGray
+        "CONTAINER-RUNTIME":
+          pipeline:
+            - type: color
+              color: darkGray
+    kubectlGetDeployments:
+      columns:
+        - "NAME"
+        - "READY"
+        - "UP-TO-DATE"
+        - "AVAILABLE"
+        - "AGE"
+      rules:
+        "NAME":
+          pipeline:
+            - type: color
+              color: white
+        "READY":
+          pipeline:
+            - type: match
+              when:
+                - contains: "0/"
+                  color: red
+              default:
+                color: lightGreen
+        "UP-TO-DATE":
+          pipeline:
+            - type: match
+              when:
+                - numberGte: 1
+                  color: lightGreen
+              default:
+                color: red
+        "AVAILABLE":
+          pipeline:
+            - type: match
+              when:
+                - numberGte: 1
+                  color: lightGreen
+              default:
+                color: red
