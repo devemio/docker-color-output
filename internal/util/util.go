@@ -4,24 +4,22 @@ import (
 	"fmt"
 	"regexp"
 	"strconv"
-	"strings"
 )
 
-const (
-	SpaceLength                  = 3
-	NonPrintableCharactersLength = 11
-)
+const SpaceLength = 3
 
 var splitRegexp = regexp.MustCompile(`\s{2,}`)
+var ansiRegexp = regexp.MustCompile(`\x1b\[[0-9;]*m`)
 
 func Split(in string) []string {
 	return splitRegexp.Split(in, -1)
 }
 
 func Pad(value string, length int) string {
-	length += NonPrintableCharactersLength * strings.Count(value, "\033[0m")
+	visible := len(ansiRegexp.ReplaceAllString(value, ""))
+	extra := max(len(value)-visible, 0)
 
-	return fmt.Sprintf("%-"+strconv.Itoa(length+SpaceLength)+"s", value)
+	return fmt.Sprintf("%-"+strconv.Itoa(length+SpaceLength+extra)+"s", value)
 }
 
 func Intersect(needle, haystack []string) bool {
